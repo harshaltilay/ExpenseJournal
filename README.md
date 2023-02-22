@@ -10,11 +10,11 @@ A lightweight minimalistic spending tracker to helps us keep monitoring our expe
     <img src="hisaab.jpg" alt="Logo" width="320" height="660">
   </a>
 
-This is two screens only app, but good enough for having insight on Architectural Pattern
+This is two screens only app, but serve its purpose good enough for having insight on CLEAN Architecture.
 1) Profile screen where user set his name and mention daily, weekly and monthly max spending targets. 
 2) Main screen that constantly shows user his daily, weekly, monthly spending details and whether the limits set is exceeded or not...
 
-###  To understand this project You must be familiar with...
+## You must be familiar with...
 
 1) Kotlin
 2) Generics
@@ -30,7 +30,7 @@ This is two screens only app, but good enough for having insight on Architectura
 * But CLEAN architecture is there to rescue on every front when things are literally BIGGErrrrrrrrr, and that journey could start with small steps only.
 * So I kept this project small, that it will be easy to study, understand, step into and implement CLEAN architecture pattern before we dice into big scale projects.
 
-### The code is divided in to five layers of CLEAN architecture pattern.
+#### The code is divided in to five layers of CLEAN architecture pattern.
 
 
 <b>1. Presentation.</b> This layer is used to interact with UI classes/elements(Activity, Fragment etc..)for respective App screens/views and their view models, adapters and other required classes to generate and work with and on UI thread. This layer also interact with UseCases layer for fulfilment of more deeper actions.
