@@ -7,7 +7,7 @@ A lightweight minimalistic spending tracker to helps us keep monitoring our expe
  </p>
 
  <a href="https://github.com/harshaltilay/Hisaab">
-    <img src="hisaab.jpg" alt="Logo" width="220" height="460">
+    <img src="hisaab.jpg" alt="Logo" width="320" height="660">
   </a>
 
 This is two screens only app, but good enough for having insight on Architectural Pattern
