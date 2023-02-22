@@ -6,7 +6,7 @@
 A lightweight minimalistic spending tracker to helps us keep monitoring our expenses.
  </p>
 
-## This aap has two screen
+## This is two screen only app but good enough for having insight on Architectural Pattern
 1) Profile screen where user set his name and mention daily, weekly and monthly max spending targets. 
 2) Main screen that constantly shows user his daily, weekly, monthly spending details and whether the limits set is exceeded or not...
 
@@ -21,9 +21,10 @@ A lightweight minimalistic spending tracker to helps us keep monitoring our expe
 7) Android Studio IDE
 
 
-* Typically MVP approach is perfect match for building this small two screens only app.
-* We also know MVVM is even better when dealing with remote data sources yet it is good only when app is relatively small (between 5- 10 screen max)or code management goes beyond..
-* I kept this project small  so that it will be easy to understand and implement CLEAN architecture pattern.
+* Typically MVP approach is perfect match for building sucha a small two screens only app.
+* We can also use MVVM when dealing with remote data sources etc... yet it is good only when app is relatively small (between 5- 10 screen max)or testing, team handling and code management simply goes beyond..
+* But CLEAN architecture is there to rescue on every front when things are literally BIGGErrrrrrrrr, and that journey could start with small steps only.
+* So I kept this project small, that it will be easy to study, understand, step into and implement CLEAN architecture pattern before we dice into big scale projects.
 
 ### The code is divided in to five layers of CLEAN architecture pattern.
 
