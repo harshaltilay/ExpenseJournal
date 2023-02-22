@@ -1,0 +1,27 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Theme.Hisaab" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Primary brand color.of mobile status bar -->
+        <item name="colorPrimary">#212A6B</item>
+        <!-- all view color for status bar etc.. -->
+        <item name="colorPrimaryVariant">@color/white</item>
+        <!-- all background view color -->
+        <item name="colorOnPrimary">@color/white</item>
+
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/color_primary</item>
+        <item name="colorSecondaryVariant">@color/color_primary_variant</item>
+        <item name="colorOnSecondary">@color/white</item>
+
+        <!-- Status bar and Nav bar configs -->
+        <item name="android:windowLightStatusBar">true</item>
+        <!-- System Status bar color. -->
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:colorBackground">@color/white</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <!-- System Navigation bar color. -->
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+</resources>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /*
+  ~  Copyright (C) 2023 Harshal Tilay
+  ~
+  ~  Licensed under the Apache License, Version 2.0 (the "License");
+  ~  you may not use this file except in compliance with the License.
+  ~  You may obtain a copy of the License at
+  ~
+  ~       http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~  Unless required by applicable law or agreed to in writing, software
+  ~  distributed under the License is distributed on an "AS IS" BASIS,
+  ~  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~  See the License for the specific language governing permissions and
+  ~  limitations under the License.
+  ~
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/round_rect_border_sky_blue"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="10dp">
+
+        <ImageView
+            android:id="@+id/ivOffer"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/spending"
+            android:src="@drawable/ic_launcher"
+            tools:ignore="ImageContrastCheck" />
+
+        <TextView
+            android:id="@+id/sent_to_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="8dp"
+            android:layout_toEndOf="@id/ivOffer"
+            android:fontFamily="@font/poppins"
+            android:textColor="@color/text_dark_blue_1"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000" />
+
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/description_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:gravity="center"
+            android:hint="@string/details_of_spending"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:lineSpacingExtra="2sp"
+            android:maxLines="2"
+            android:minHeight="48dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:textColor="@color/text_dark_blue_1"
+            android:textColorHint="#546E7A"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sent_to_tv" />
+
+        <RadioGroup
+            android:id="@+id/category_rg"
+            android:layout_width="348dp"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/description_input">
+
+            <RadioButton
+                android:id="@+id/essential_rb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/gray_2"
+                android:fontFamily="@font/poppinsmedium"
+                android:minHeight="48dp"
+                android:text="@string/essential"
+                android:textColor="#616161"
+                android:textSize="14sp" />
+
+            <RadioButton
+                android:id="@+id/casual_rb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:buttonTint="@color/gray_2"
+                android:fontFamily="@font/poppinsmedium"
+                android:minHeight="48dp"
+                android:text="@string/casual"
+                android:textColor="#616161"
+                android:textSize="14sp" />
+
+            <RadioButton
+                android:id="@+id/anxiety_rb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:buttonTint="@color/gray_2"
+                android:checked="true"
+                android:fontFamily="@font/poppinsmedium"
+                android:minHeight="48dp"
+                android:text="@string/anxiety"
+                android:textColor="#616161"
+                android:textSize="14sp"
+                tools:ignore="TextContrastCheck" />
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/update_button_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/roundrect_bg_button"
+            android:fontFamily="@font/poppinsbold"
+            android:text="@string/update"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/category_rg" />
+    </LinearLayout>
+</LinearLayout>

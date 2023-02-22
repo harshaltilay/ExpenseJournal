@@ -1,0 +1,62 @@
+<resources>
+    <string name="app_name">Hisaab</string>
+    <string name="failure_db_error">Database Error: Please try after sometime.</string>
+    <string name="action_ok">Okay</string>
+    <string name="today_friendly_date">
+        &lt;font color="#757575"> &lt;b>%1s &lt;/b>&lt;/font>
+        &lt;font color="#426DDC">%2s &lt;/font>
+    </string>
+
+    <string name="details_of_spending">Please specify the details of you spending.</string>
+    <string name="essential">Essential</string>
+    <string name="casual">Casual</string>
+    <string name="anxiety">Anxiety</string>
+    <string name="spending">Spending</string>
+    <string name="username">Username</string>
+    <string name="daily_spending_max">Daily spending max</string>
+    <string name="weekly_spending_max">Weekly spending max</string>
+    <string name="monthly_spending_max">Monthly spending max</string>
+    <string name="update">Update</string>
+    <string name="cancel">Cancel</string>
+    <string name="back">Back</string>
+    <string name="update_profile">Update profile</string>
+    <string name="rrr">₹</string>
+
+
+    <string name="string_limit_monthly">
+      Monthly Limit :   &lt;b>%2s&lt;/b>
+    </string>
+    <string name="string_limit_weekly">
+      Weekly Limit :   &lt;b>%2s&lt;/b>
+    </string>
+    <string name="string_limit_daily">
+      Daily Limit :   &lt;b>%2s&lt;/b>
+    </string>
+    <string name="string_welcome_user">
+      Hello &lt;b>%1s&lt;/b>
+    </string>
+    <string name="string_total_year">
+      Year Total: &lt;b>%1s&lt;/b>
+    </string>
+    <string name="string_total_month">
+      Month Total: &lt;b>%1s&lt;/b>
+    </string>
+
+    <string name="string_friendly_week">
+        &lt;font color="#002c56">&lt;b>%1s&lt;/b>&lt;/font>
+        &lt;font color="#426DDC"> week &lt;/font>
+    </string>
+
+    <string name="string_today_friendly_date">
+        &lt;font color="#000"> &lt;b>%1s&lt;/b>&lt;/font>
+        &lt;font color="#757575">%2s&lt;/font>
+    </string>
+    <string name="add_expense">Add Expense</string>
+    <string name="amount_is_spent_for">Amount is spent for…</string>
+    <string name="received_by">Received by</string>
+    <string name="spending_category">Spending category</string>
+    <string name="submit">Submit</string>
+    <string name="amount">amount</string>
+    <string name="profile">Profile</string>
+    <string name="search_amp_history"><![CDATA[Search & History]]></string>
+</resources>
