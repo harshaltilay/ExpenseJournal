@@ -6,21 +6,20 @@
 A lightweight minimalistic spending tracker to helps us keep monitoring our expenses.
  </p>
 
+## This aap has two screen
+1) Profile screen where user set his name and mention daily, weekly and monthly max spending targets. 
+2) Main screen that constantly shows user his daily, weekly, monthly spending details and whether the limits set is exceeded or not...
+
 * Typically MVP approach is perfect match for building this small two screens only app.
 * We also know MVVM is even better when dealing with remote data sources yet it is good only when app is relatively small (between 5- 10 screen max)or code management goes beyond..
 * I kept this project small  so that it will be easy to understand and implement CLEAN architecture pattern.
-
-This aap has two screen
-1) Profile screen where user set his name and mention daily, weekly and monthly max spending targets. 
-2) Main screen that constantly shows user his daily, weekly, monthly spending details and whether the limits set is exceeded or not...
-3) 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### To understand this project You must be familiar with...
 
 * Kotlin
 * Generics
 * HILT2
+* Flow basics
 * RoomDB
 * Navigation Component
 * Android Studio IDE
