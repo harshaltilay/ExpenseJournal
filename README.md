@@ -12,13 +12,13 @@ A lightweight minimalistic spending tracker to helps us keep monitoring our expe
 
 ### To understand this project You must be familiar with...
 
-* Kotlin
-* Generics
-* HILT2
-* Flow basics
-* RoomDB
-* Navigation Component
-* Android Studio IDE
+1) Kotlin
+2) Generics
+3) HILT2
+4) Flow basics
+5) RoomDB
+6) Navigation Component
+7) Android Studio IDE
 
 
 * Typically MVP approach is perfect match for building this small two screens only app.
