@@ -6,7 +6,11 @@
 A lightweight minimalistic spending tracker to helps us keep monitoring our expenses.
  </p>
 
-### This is two screens only app, but good enough for having insight on Architectural Pattern
+ <a href="https://github.com/harshaltilay/Hisaab">
+    <img src="hisaab.jpg" alt="Logo" width="220" height="460">
+  </a>
+
+This is two screens only app, but good enough for having insight on Architectural Pattern
 1) Profile screen where user set his name and mention daily, weekly and monthly max spending targets. 
 2) Main screen that constantly shows user his daily, weekly, monthly spending details and whether the limits set is exceeded or not...
 
