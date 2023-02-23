@@ -34,6 +34,7 @@ import com.harshal.hisaab.framework.android.platform.BaseFragment
 import com.harshal.hisaab.usecases.user.GetUserInfoUseCase
 import com.harshal.hisaab.usecases.user.SetUserInfoUseCase
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 import javax.inject.Inject
 
 
@@ -75,6 +76,7 @@ class ProfileFragment : BaseFragment() {
             binding.amountDailyInput.setText(user.dailyMax.toInt().toString())
             binding.amountWeeklyInput.setText(user.weeklyMax.toInt().toString())
             binding.amountMonthlyInput.setText(user.monthlyMax.toInt().toString())
+            binding.countryCodeInput.setText(user.isoCountry)
         }
         setUpObservers()
         setupViewAdapters()
@@ -98,7 +100,6 @@ class ProfileFragment : BaseFragment() {
 
         binding.updateProfileBtn.setOnClickListener {
             validateAndSubmit()
-            binding.updateProfileBtn.invisible()
         }
         binding.backBtn.setOnClickListener {
             findNavController().popBackStack()
@@ -131,11 +132,13 @@ class ProfileFragment : BaseFragment() {
         binding.amountWeeklyInput.error = null
         binding.amountMonthlyInput.error = null
         binding.usernameInput.error = null
+        binding.countryCodeInput.error = null
 
         val username = binding.usernameInput.text.toString().trim()
         val daily = binding.amountDailyInput.text.toString().trim()
         val weekly = binding.amountWeeklyInput.text.toString().trim()
         val monthly = binding.amountMonthlyInput.text.toString().trim()
+        val countryCode = binding.countryCodeInput.text.toString().trim()
 
         if (username.isEmpty() || username.length < 2) {
             binding.usernameInput.error = "Invalid reference"
@@ -154,18 +157,29 @@ class ProfileFragment : BaseFragment() {
             return
         }
 
-        hideKeyBoard()
+        if (!isValidLocale(countryCode)) {
+            binding.countryCodeInput.error = "Invalid country code"
+            return
+        }
 
+        hideKeyBoard()
+        binding.updateProfileBtn.invisible()
         setUserInfoUseCase(
             UserProfileEntity(
-                daily.toFloat(),
-                weekly.toFloat(),
-                monthly.toFloat(),
-                username,
+                daily.toFloat(), weekly.toFloat(), monthly.toFloat(), username, countryCode
             )
         )
         findNavController().popBackStack()
     }
+
+    private fun isValidLocale(countryCode: String): Boolean {
+        val list = Locale.getISOCountries()
+        return list.contains(countryCode.uppercase())
+    }
+/*
+ Locale.getAvailableLocales().map { it.displayName }.filter { it.trim().isNotBlank() }
+.distinct().sorted()
+ */
 
 }
 

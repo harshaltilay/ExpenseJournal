@@ -67,4 +67,5 @@
     <string name="amount">amount</string>
     <string name="profile">Profile</string>
     <string name="search_amp_history"><![CDATA[Search & History]]></string>
+    <string name="your_country_code">Your country code:</string>
 </resources>

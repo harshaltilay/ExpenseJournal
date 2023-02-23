@@ -120,8 +120,12 @@ fun String.Companion.inCurrency(amount: Float?): String {
     val format = NumberFormat.getCurrencyInstance(Locale("en", MainActivity.curUser!!.isoCountry))
     format.maximumFractionDigits = 2
     val amnt = format.format(amount)
-    return if (amnt.split('.')[1].indexOf("00") != -1) amnt.split('.')[0]
-    else amnt
+    return try {
+        if (amnt.split('.')[1].indexOf("00") != -1) amnt.split('.')[0] else amnt
+    } catch (e: Exception) {
+        amnt
+    }
+
 }
 
 fun String.Companion.html(str: String): Spanned {
