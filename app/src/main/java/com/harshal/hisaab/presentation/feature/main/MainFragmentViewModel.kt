@@ -114,6 +114,7 @@ class MainFragmentViewModel @Inject constructor(
         )
         _byDaysListFetcher?.fetch()
 
+
         _byDateListFetcher?.clear()
         _byDateListFetcher = ByDateListFetcher.get(
             viewModelScope, _dateListJob, _debitEntityList, _fetchByDateUseCase, handleFailure

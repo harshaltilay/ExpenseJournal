@@ -115,7 +115,6 @@ class MainFragment : BaseFragment() {
         val user = _mainFragmentViewModel.userProfileEntity
         user?.let {
             _mainFragmentViewModel.beginFlow()
-
             it.apply {
                 binding.usernameTv.text = String.html(getString(R.string.string_welcome_user, name))
                 binding.monthlyLimitTv.text = String.html(
@@ -141,11 +140,6 @@ class MainFragment : BaseFragment() {
             setupViewAdapters()
             assignActions()
             setUpObservers()
-
-
-            val time = Calendar.getInstance().time
-            binding.daySelectedTv.text = String.getFriendlyDayAndMonth(time)
-            _mainFragmentViewModel.fetchByDate(time)
         }
     }
 
@@ -245,13 +239,22 @@ class MainFragment : BaseFragment() {
                 monthHistoryAdapter.collection = it ?: emptyList()
 
             }
+            observe(spendingByWeekList) {
+                weekHistoryAdapter.collection = it ?: emptyList()
+            }
+
+            observe(spendingByDayList) {
+                daysHistoryAdapter.collection = it ?: emptyList()
+            }
+
+            observe(debitEntityList) {
+                debitListAdapter.collection = it ?: emptyList()
+            }
+
             observe(totalYearly) {
                 binding.presentYearTotalTv.text = String.html(
                     getString(R.string.string_total_year, String.inCurrency(it ?: 0f))
                 )
-            }
-            observe(spendingByWeekList) {
-                weekHistoryAdapter.collection = it ?: emptyList()
             }
             observe(totalMonthly) {
                 if (it == null) return@observe
@@ -271,14 +274,6 @@ class MainFragment : BaseFragment() {
                         )
                     }
                 )
-            }
-
-            observe(spendingByDayList) {
-                daysHistoryAdapter.collection = it ?: emptyList()
-            }
-
-            observe(debitEntityList) {
-                debitListAdapter.collection = it ?: emptyList()
             }
             failure(failureException) {
                 notifyWithAction(R.string.failure_db_error, R.string.action_ok, null)

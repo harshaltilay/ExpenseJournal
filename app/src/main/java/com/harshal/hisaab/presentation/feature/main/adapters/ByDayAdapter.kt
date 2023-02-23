@@ -23,6 +23,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.harshal.hisaab.R
 import com.harshal.hisaab.databinding.RowDailyItemBinding
 import com.harshal.hisaab.domain.ClickListener
 import com.harshal.hisaab.domain.room.DailySumEntity
@@ -35,10 +36,15 @@ import kotlin.properties.Delegates
 class ByDayAdapter
 @Inject constructor() : RecyclerView.Adapter<ByDayAdapter.ViewHolder>() {
 
+    private var selectedPosition = 0
+
     internal lateinit var clickListener: ClickListener<DailySumEntity>
 
-    internal var collection: List<DailySumEntity> by Delegates.observable(emptyList()) { _, _, _ ->
+    internal var collection: List<DailySumEntity> by Delegates.observable(emptyList()) { _, old, neu ->
         notifyDataSetChanged()
+        if (old.isEmpty() && neu.isNotEmpty()) {
+            selectItem()
+        }
     }
 
     private lateinit var _recyclerView: RecyclerView
@@ -54,18 +60,28 @@ class ByDayAdapter
         )
     )
 
-    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) =
-        viewHolder.bind(collection[position])
+    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) = viewHolder.bind(position)
 
     override fun getItemCount() = collection.size
 
+    private fun selectItem(position: Int = -1) {
+        if (collection.isNotEmpty()) {
+            notifyItemChanged(selectedPosition)
+            selectedPosition = if (position == -1) selectedPosition else position
+            notifyItemChanged(selectedPosition)
+            clickListener.onItemClick(collection[selectedPosition])
+        }
+    }
+
     inner class ViewHolder(private val binding: RowDailyItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(entity: DailySumEntity) {
-            binding.rowData = entity
+        fun bind(position: Int) {
+            binding.rowData = collection[position]
             binding.root.setOnClickListener {
-                clickListener.onItemClick(entity)
+                selectItem(position)
             }
+            if (selectedPosition == position) binding.root.setBackgroundResource(R.drawable.rect_border_gray)
+            else binding.root.setBackgroundResource(R.color.white)
         }
     }
 }
