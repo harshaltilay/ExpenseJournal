@@ -25,6 +25,7 @@ import androidx.core.text.HtmlCompat
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import com.harshal.hisaab.MainActivity
 import java.text.NumberFormat
 import java.time.ZoneId
 import java.time.format.TextStyle
@@ -115,8 +116,8 @@ fun String.Companion.getPostFixedNumber(i: Int): String {
     } else i.toString() + "th"
 }
 
-fun String.Companion.inCurrency(amount: Float?, country: String = "IN"): String {
-    val format = NumberFormat.getCurrencyInstance(Locale("en", country))
+fun String.Companion.inCurrency(amount: Float?): String {
+    val format = NumberFormat.getCurrencyInstance(Locale("en", MainActivity.curUser!!.isoCountry))
     format.maximumFractionDigits = 2
     val amnt = format.format(amount)
     return if (amnt.split('.')[1].indexOf("00") != -1) amnt.split('.')[0]

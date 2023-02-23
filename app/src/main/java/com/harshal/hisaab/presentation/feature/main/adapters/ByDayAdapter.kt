@@ -63,11 +63,19 @@ class ByDayAdapter
     override fun getItemCount() = collection.size
 
     private fun selectItem(position: Int = -1) {
-        if (collection.isNotEmpty()) {
+        if (collection.isNotEmpty() && position != selectedPosition) {
             notifyItemChanged(selectedPosition)
             selectedPosition = if (position == -1) selectedPosition else position
             clickListener.onItemClick(collection[selectedPosition])
             notifyItemChanged(selectedPosition)
+        }
+    }
+
+    fun selectedEntity(): DailySumEntity? {
+        return try {
+            collection[selectedPosition]
+        } catch (e: Exception) {
+            null
         }
     }
 

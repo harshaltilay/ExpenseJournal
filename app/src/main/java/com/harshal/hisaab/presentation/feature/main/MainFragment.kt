@@ -30,6 +30,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
+import com.harshal.hisaab.MainActivity
 import com.harshal.hisaab.R
 import com.harshal.hisaab.databinding.FragmentMainBinding
 import com.harshal.hisaab.domain.*
@@ -92,11 +93,12 @@ class MainFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val user = getUserInfoUseCase()
-        if (user.name.trim().isBlank()) {
-            gotTo(R.id.action_to_profile)
-        } else {
-            _mainFragmentViewModel.setUserProfile(user)
+
+        MainActivity.curUser = getUserInfoUseCase()
+        MainActivity.curUser?.let {
+            if (it.name.trim().isBlank()) {
+                gotTo(R.id.action_to_profile)
+            }
         }
         mainActivityDelegate.fragmentIsReady(this)
     }
@@ -112,7 +114,7 @@ class MainFragment : BaseFragment() {
     }
 
     private fun init() {
-        val user = _mainFragmentViewModel.userProfileEntity
+        val user = MainActivity.curUser
         user?.let {
             _mainFragmentViewModel.beginFlow()
             it.apply {
@@ -205,7 +207,7 @@ class MainFragment : BaseFragment() {
         daysHistoryAdapter.clickListener = object : ClickListener<DailySumEntity> {
             override fun onItemClick(entity: DailySumEntity) {
                 binding.daySelectedTv.text = String.getFriendlyDayAndMonth(entity.time)
-                updateDayOpinion(entity)
+                updateDayOpinion()
                 _mainFragmentViewModel.fetchByDate(entity.time)
             }
         }
@@ -233,19 +235,6 @@ class MainFragment : BaseFragment() {
         binding.spendingListRecyclerView.adapter = debitListAdapter
     }
 
-    private fun updateDayOpinion(entity: DailySumEntity) {
-        _mainFragmentViewModel.userProfileEntity?.run {
-            val opinionAmount = this.dailyMax - entity.amount
-            binding.opinionTv.text = String.html(
-                if (opinionAmount >= 0) getString(
-                    R.string.string_opinion_safe,
-                    String.inCurrency(opinionAmount)
-                )
-                else getString(R.string.string_opinion_overspent, String.inCurrency(opinionAmount * -1))
-            )
-        }
-    }
-
     override fun setUpObservers() {
         with(_mainFragmentViewModel) {
             observe(spendingByMonthList) {
@@ -263,6 +252,7 @@ class MainFragment : BaseFragment() {
 
             observe(debitEntityList) {
                 debitListAdapter.collection = it ?: emptyList()
+                updateDayOpinion()
             }
 
             observe(totalYearly) {
@@ -279,7 +269,7 @@ class MainFragment : BaseFragment() {
                 )
 
                 binding.presentMonthTotalTv.setTextColor(
-                    if (it > _mainFragmentViewModel.userProfileEntity!!.monthlyMax) {
+                    if (it > MainActivity.curUser!!.monthlyMax) {
                         resources.getColor(
                             R.color.red, null
                         )
@@ -361,6 +351,23 @@ class MainFragment : BaseFragment() {
         item.title = s
 
         popup.show()
+    }
+
+    private fun updateDayOpinion() {
+        val entity = daysHistoryAdapter.selectedEntity()
+        entity?.let {
+            MainActivity.curUser?.run {
+                val opinionAmount = this.dailyMax - it.amount
+                binding.opinionTv.text = String.html(
+                    if (opinionAmount >= 0) getString(
+                        R.string.string_opinion_safe, String.inCurrency(opinionAmount)
+                    )
+                    else getString(
+                        R.string.string_opinion_overspent, String.inCurrency(opinionAmount * -1)
+                    )
+                )
+            }
+        }
     }
 }
 

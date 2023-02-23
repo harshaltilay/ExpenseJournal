@@ -25,7 +25,11 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class UserProfileEntity(
-    var dailyMax: Float, var weeklyMax: Float, var monthlyMax: Float, var name: String
+    var dailyMax: Float,
+    var weeklyMax: Float,
+    var monthlyMax: Float,
+    var name: String,
+    var isoCountry: String = "IN"
 ) : Parcelable {
     companion object {
         fun blankEntity(): UserProfileEntity {

@@ -1,10 +1,10 @@
 package com.harshal.hisaab.presentation.feature.main.list
 
 import androidx.lifecycle.MutableLiveData
+import com.harshal.hisaab.MainActivity
 import com.harshal.hisaab.domain.BaseUseCase
 import com.harshal.hisaab.domain.FailureException
 import com.harshal.hisaab.domain.room.WeeklySumEntity
-import com.harshal.hisaab.domain.user.UserProfileEntity
 import com.harshal.hisaab.usecases.spending.FetchByWeeksUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
@@ -18,7 +18,6 @@ class ByWeekListFetcher(
     private val _spendList: MutableLiveData<List<WeeklySumEntity>>,
     private val _fetchByWeeksUseCase: FetchByWeeksUseCase,
     private val _handleFailure: (FailureException) -> Unit,
-    private var _userProfileEntity: UserProfileEntity,
     private var _totalMonthly: MutableLiveData<Float>
 ) : Clearable {
 
@@ -31,7 +30,6 @@ class ByWeekListFetcher(
             spendList: MutableLiveData<List<WeeklySumEntity>>,
             fetchByWeeksUseCase: FetchByWeeksUseCase,
             handle_failure: (FailureException) -> Unit,
-            userProfileEntity: UserProfileEntity,
             totalMonthly: MutableLiveData<Float>
         ): ByWeekListFetcher {
             return INSTANCE ?: synchronized(this) {
@@ -41,7 +39,6 @@ class ByWeekListFetcher(
                     spendList,
                     fetchByWeeksUseCase,
                     handle_failure,
-                    userProfileEntity,
                     totalMonthly
                 )
                 INSTANCE = instance
@@ -66,7 +63,7 @@ class ByWeekListFetcher(
                 val newList = arrayListOf<WeeklySumEntity>()
                 var totalCount = 0f
                 WeeklyDebitEntity.forEach {
-                    it.maxlimit = _userProfileEntity.weeklyMax
+                    it.maxlimit = MainActivity.curUser!!.weeklyMax
                     newList.add(it)
                     totalCount += it.amount
                 }

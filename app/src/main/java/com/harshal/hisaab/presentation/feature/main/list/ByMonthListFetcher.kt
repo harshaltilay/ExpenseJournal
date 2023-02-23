@@ -1,10 +1,10 @@
 package com.harshal.hisaab.presentation.feature.main.list
 
 import androidx.lifecycle.MutableLiveData
+import com.harshal.hisaab.MainActivity
 import com.harshal.hisaab.domain.BaseUseCase
 import com.harshal.hisaab.domain.FailureException
 import com.harshal.hisaab.domain.room.MonthlySumEntity
-import com.harshal.hisaab.domain.user.UserProfileEntity
 import com.harshal.hisaab.usecases.spending.FetchByMonthsUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
@@ -18,7 +18,6 @@ class ByMonthListFetcher(
     private val _monthList: MutableLiveData<List<MonthlySumEntity>>,
     private val _fetchByMonthsUseCase: FetchByMonthsUseCase,
     private val _handleFailure: (FailureException) -> Unit,
-    private var _userProfileEntity: UserProfileEntity,
     private var _totalYearly: MutableLiveData<Float>
 ) : Clearable {
 
@@ -31,7 +30,6 @@ class ByMonthListFetcher(
             _spendList: MutableLiveData<List<MonthlySumEntity>>,
             fetchByMonthsUseCase: FetchByMonthsUseCase,
             handle_failure: (FailureException) -> Unit,
-            userProfileEntity: UserProfileEntity,
             totalYearly: MutableLiveData<Float>
         ): ByMonthListFetcher {
             return INSTANCE ?: synchronized(this) {
@@ -41,7 +39,6 @@ class ByMonthListFetcher(
                     _spendList,
                     fetchByMonthsUseCase,
                     handle_failure,
-                    userProfileEntity,
                     totalYearly
                 )
                 INSTANCE = instance
@@ -66,7 +63,7 @@ class ByMonthListFetcher(
                 val newList = arrayListOf<MonthlySumEntity>()
                 var totalCount = 0f
                 monthlyDebitEntity.forEach {
-                    it.maxlimit = _userProfileEntity.monthlyMax
+                    it.maxlimit = MainActivity.curUser!!.monthlyMax
                     newList.add(it)
                     totalCount += it.amount
                 }

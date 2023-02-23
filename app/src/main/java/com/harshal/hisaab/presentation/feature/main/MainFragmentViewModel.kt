@@ -23,7 +23,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.harshal.hisaab.domain.room.*
-import com.harshal.hisaab.domain.user.UserProfileEntity
 import com.harshal.hisaab.framework.android.platform.BaseViewModel
 import com.harshal.hisaab.presentation.feature.main.list.ByDateListFetcher
 import com.harshal.hisaab.presentation.feature.main.list.ByDaysListFetcher
@@ -46,8 +45,8 @@ class MainFragmentViewModel @Inject constructor(
 ) : BaseViewModel() {
 
 
-    var userProfileEntity: UserProfileEntity? = null
-        private set
+//    var userProfileEntity: UserProfileEntity? = null
+//        private set
 
     private val _spendingByMonthList: MutableLiveData<List<MonthlySumEntity>> = MutableLiveData()
     val spendingByMonthList: LiveData<List<MonthlySumEntity>> = _spendingByMonthList
@@ -73,11 +72,6 @@ class MainFragmentViewModel @Inject constructor(
     private var _dateListJob: Job? = null
     private var _byDateListFetcher: ByDateListFetcher? = null
 
-
-    fun setUserProfile(userProfileEntity: UserProfileEntity) {
-        this.userProfileEntity = userProfileEntity
-    }
-
     fun beginFlow() {
         _byMonthListFetcher?.clear()
         _byMonthListFetcher = ByMonthListFetcher.get(
@@ -86,7 +80,6 @@ class MainFragmentViewModel @Inject constructor(
             _spendingByMonthList,
             _fetchByMonthsUseCase,
             handleFailure,
-            userProfileEntity!!,
             totalYearly
         )
         _byMonthListFetcher?.fetch()
@@ -98,7 +91,6 @@ class MainFragmentViewModel @Inject constructor(
             _spendingByWeekList,
             _fetchByWeeksUseCase,
             handleFailure,
-            userProfileEntity!!,
             totalMonthly
         )
         _byWeekListFetcher?.fetch()
@@ -109,8 +101,7 @@ class MainFragmentViewModel @Inject constructor(
             _daysListJob,
             _spendingByDayList,
             _spendingHistoryUseCase,
-            handleFailure,
-            userProfileEntity!!
+            handleFailure
         )
         _byDaysListFetcher?.fetch()
 

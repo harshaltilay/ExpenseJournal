@@ -28,6 +28,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.navigation.Navigation
 import com.harshal.hisaab.databinding.ActivityMainBinding
+import com.harshal.hisaab.domain.user.UserProfileEntity
 import com.harshal.hisaab.framework.android.platform.ActivityDelegate
 import com.harshal.hisaab.framework.android.platform.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -67,5 +68,9 @@ class MainActivity : AppCompatActivity(), ActivityDelegate {
     override fun fragmentIsReady(baseFragment: BaseFragment) {
         _baseFragment = baseFragment
         isReady = true
+    }
+
+    companion object {
+        var curUser: UserProfileEntity? = null
     }
 }

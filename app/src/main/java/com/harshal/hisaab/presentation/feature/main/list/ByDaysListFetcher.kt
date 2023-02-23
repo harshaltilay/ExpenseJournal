@@ -1,10 +1,10 @@
 package com.harshal.hisaab.presentation.feature.main.list
 
 import androidx.lifecycle.MutableLiveData
+import com.harshal.hisaab.MainActivity
 import com.harshal.hisaab.domain.BaseUseCase
 import com.harshal.hisaab.domain.FailureException
 import com.harshal.hisaab.domain.room.DailySumEntity
-import com.harshal.hisaab.domain.user.UserProfileEntity
 import com.harshal.hisaab.usecases.spending.SpendingHistoryUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
@@ -17,8 +17,7 @@ class ByDaysListFetcher(
     private var _job: Job?,
     private val _spendingHistoryList: MutableLiveData<List<DailySumEntity>>,
     private val _spendingHistoryUseCase: SpendingHistoryUseCase,
-    private val _handleFailure: (FailureException) -> Unit,
-    private var _userProfileEntity: UserProfileEntity
+    private val _handleFailure: (FailureException) -> Unit
 ) : Clearable {
 
     companion object {
@@ -29,17 +28,11 @@ class ByDaysListFetcher(
             job: Job?,
             spendingHistoryList: MutableLiveData<List<DailySumEntity>>,
             spendingHistoryUseCase: SpendingHistoryUseCase,
-            handle_failure: (FailureException) -> Unit,
-            userProfileEntity: UserProfileEntity
+            handle_failure: (FailureException) -> Unit
         ): ByDaysListFetcher {
             return INSTANCE ?: synchronized(this) {
                 val instance = ByDaysListFetcher(
-                    viewModelScope,
-                    job,
-                    spendingHistoryList,
-                    spendingHistoryUseCase,
-                    handle_failure,
-                    userProfileEntity
+                    viewModelScope, job, spendingHistoryList, spendingHistoryUseCase, handle_failure
                 )
                 INSTANCE = instance
                 // return instance
@@ -59,7 +52,7 @@ class ByDaysListFetcher(
             list.cancellable().collect { dailySumEntity ->
                 val newList = arrayListOf<DailySumEntity>()
                 dailySumEntity.forEach {
-                    it.maxlimit = _userProfileEntity.dailyMax
+                    it.maxlimit = MainActivity.curUser!!.dailyMax
                     newList.add(it)
                 }
                 _spendingHistoryList.postValue(newList.toList())
