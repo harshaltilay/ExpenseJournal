@@ -234,11 +234,11 @@ class MainFragment : BaseFragment() {
 
     override fun setUpObservers() {
         with(_mainFragmentViewModel) {
-
             observe(spendingByMonthList) {
                 monthHistoryAdapter.collection = it ?: emptyList()
 
             }
+
             observe(spendingByWeekList) {
                 weekHistoryAdapter.collection = it ?: emptyList()
             }
@@ -256,6 +256,7 @@ class MainFragment : BaseFragment() {
                     getString(R.string.string_total_year, String.inCurrency(it ?: 0f))
                 )
             }
+
             observe(totalMonthly) {
                 if (it == null) return@observe
 
@@ -275,6 +276,7 @@ class MainFragment : BaseFragment() {
                     }
                 )
             }
+
             failure(failureException) {
                 notifyWithAction(R.string.failure_db_error, R.string.action_ok, null)
             }

@@ -15,8 +15,6 @@
  *  limitations under the License.
  *
  */
-
-
 package com.harshal.hisaab.presentation.feature.main.adapters
 
 import android.annotation.SuppressLint

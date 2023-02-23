@@ -24,27 +24,21 @@ This is two screens only app, but serve its purpose good enough of having insigh
 6) Navigation Component
 7) Android Studio IDE
 
+#### The code is divided in to five layers of CLEAN Architecture Pattern.
 
-* Typically MVP approach is perfect match for building sucha a small two screens only app.
-* We can also use MVVM when dealing with remote data sources etc... yet it is good only when app is relatively small (between 5- 10 screen max)or testing, team handling and code management simply goes beyond..
-* But CLEAN architecture is there to rescue on every front when things are literally BIGGErrrrrrrrr, and that journey could start with small steps only.
-* So I kept this project small, that it will be easy to study, understand, step into and implement CLEAN architecture pattern before we dice into big scale projects.
-
-#### The code is divided in to five layers of CLEAN architecture pattern.
-
-<b>1. Presentation.</b> 
+<b>1. Presentation.</b><br> 
 This layer is used to interact with UI classes/elements(Activity, Fragment etc..)for respective App screens/views and their view models, adapters and other required classes to generate and work with and on UI thread. This layer also interact with UseCases layer for fulfilment of more deeper actions.
 
-<b>2. Use cases.</b> 
+<b>2. Use cases.</b><br> 
 This layer also called Interactors too. These are mainly set of predefined actions that are mostly triggered by user interactions like button clicks etc... Generally this is the point where we should switch from main UI thread to background thread to perform the processing by interacting with Domain and or Data layer.
 
-<b>3. Domain.</b> 
+<b>3. Domain.</b><br> 
 This layer also referred as business logic layer. These are the rules of your business logic that is core functioning of our app. It also contains all the data models defined too. <i>Ideally, this should be the biggest layer in traditional software development, but ironically Android Apps usually tend to just draw an API based data on the screen of a phone</i>, so most of the core logic will consist of requesting and persisting data (defined in data layer), reducing this layer to much much smaller or almost empty code portion in Android development. This is virtually innermost layer, anything you defined here can be used in all the others layers but this layer should not be dependent on classes & interfaces of other layers.
 
-<b>4. Data.</b> 
+<b>4. Data.</b><br> 
 This layer keeps the abstract definitions and implementations of specific data usage. A place that hold repositories of remote/local data sources that uses respective Frameworks.
 
-<b>5. Framework.</b> 
+<b>5. Framework.</b><br> 
 Encapsulates an interaction with framework so its code can be agnostic & reusable if we want the same framework to be used in other projects/apps this may consist of Room connection, Retrofit or device sensors initialization code. This must be as simple as possible for a framework to build as all the specific usages logic for it is placed in other layers mostly in data & other layers if necessary in rare scenario.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -85,6 +79,6 @@ Windows | MacOS</br>
 
 ## Disclaimer
 This is my hobby project mostly completed in spare time and has been developed on Emulator only. If you face any issue please let me know further. 
-This is a complete offline app so if you uninstall it then you will loose all your existing data.
+This is an offline app so if you uninstall it then you will loose all your existing data.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
