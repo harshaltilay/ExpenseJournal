@@ -66,8 +66,8 @@ class ByDayAdapter
         if (collection.isNotEmpty()) {
             notifyItemChanged(selectedPosition)
             selectedPosition = if (position == -1) selectedPosition else position
-            notifyItemChanged(selectedPosition)
             clickListener.onItemClick(collection[selectedPosition])
+            notifyItemChanged(selectedPosition)
         }
     }
 

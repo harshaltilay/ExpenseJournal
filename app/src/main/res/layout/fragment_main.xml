@@ -323,15 +323,28 @@
         android:orientation="horizontal">
 
         <TextView
+            android:lines="1"
             android:id="@+id/day_selected_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight=".4"
             android:fontFamily="@font/poppinsmedium"
             android:lineSpacingExtra="27sp"
             android:text="Transactions Details"
             android:textColor="@color/button_bg_blue"
             android:textSize="16sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/opinion_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".6"
+            android:fontFamily="@font/poppinslight"
+            android:lineSpacingExtra="27sp"
+            android:textColor="@color/button_bg_blue"
+            android:textSize="14sp"
             android:textStyle="bold"
             tools:ignore="HardcodedText" />
 

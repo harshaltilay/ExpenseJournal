@@ -42,6 +42,14 @@
       Month Total: &lt;b>%1s&lt;/b>
     </string>
 
+    <string name="string_opinion_overspent">
+      &lt;font color="#FF0000"> Overspent: &lt;b>%1s&lt;/b>&lt;/font>
+    </string>
+
+    <string name="string_opinion_safe">
+        &lt;font color="#8BC34A"> Safe to spend: &lt;b>%1s&lt;/b>&lt;/font>
+    </string>
+
     <string name="string_friendly_week">
         &lt;font color="#002c56">&lt;b>%1s&lt;/b>&lt;/font>
         &lt;font color="#426DDC"> week &lt;/font>

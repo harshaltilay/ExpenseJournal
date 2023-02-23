@@ -205,6 +205,7 @@ class MainFragment : BaseFragment() {
         daysHistoryAdapter.clickListener = object : ClickListener<DailySumEntity> {
             override fun onItemClick(entity: DailySumEntity) {
                 binding.daySelectedTv.text = String.getFriendlyDayAndMonth(entity.time)
+                updateDayOpinion(entity)
                 _mainFragmentViewModel.fetchByDate(entity.time)
             }
         }
@@ -230,6 +231,19 @@ class MainFragment : BaseFragment() {
             }
         }
         binding.spendingListRecyclerView.adapter = debitListAdapter
+    }
+
+    private fun updateDayOpinion(entity: DailySumEntity) {
+        _mainFragmentViewModel.userProfileEntity?.run {
+            val opinionAmount = this.dailyMax - entity.amount
+            binding.opinionTv.text = String.html(
+                if (opinionAmount >= 0) getString(
+                    R.string.string_opinion_safe,
+                    String.inCurrency(opinionAmount)
+                )
+                else getString(R.string.string_opinion_overspent, String.inCurrency(opinionAmount * -1))
+            )
+        }
     }
 
     override fun setUpObservers() {
