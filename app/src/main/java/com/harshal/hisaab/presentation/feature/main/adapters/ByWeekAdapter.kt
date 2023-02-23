@@ -35,7 +35,6 @@ import kotlin.properties.Delegates
 class ByWeekAdapter
 @Inject constructor() : RecyclerView.Adapter<ByWeekAdapter.ViewHolder>() {
 
-    internal lateinit var clickListener: ClickListener<WeeklySumEntity>
 
     internal var collection: List<WeeklySumEntity> by Delegates.observable(emptyList()) { _, _, _ ->
         notifyDataSetChanged()
@@ -63,9 +62,6 @@ class ByWeekAdapter
         RecyclerView.ViewHolder(binding.root) {
         fun bind(weeklySumEntity: WeeklySumEntity) {
             binding.rowData = weeklySumEntity
-            binding.root.setOnClickListener {
-                clickListener.onItemClick(weeklySumEntity)
-            }
         }
     }
 }

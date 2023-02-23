@@ -24,7 +24,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.harshal.hisaab.databinding.RowMonthlyItemBinding
-import com.harshal.hisaab.domain.ClickListener
 import com.harshal.hisaab.domain.room.MonthlySumEntity
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -34,8 +33,6 @@ import kotlin.properties.Delegates
 @Singleton
 class ByMonthAdapter
 @Inject constructor() : RecyclerView.Adapter<ByMonthAdapter.ViewHolder>() {
-
-    internal lateinit var clickListener: ClickListener<MonthlySumEntity>
 
     internal var collection: List<MonthlySumEntity> by Delegates.observable(emptyList()) { _, _, _ ->
         notifyDataSetChanged()
@@ -63,9 +60,6 @@ class ByMonthAdapter
         RecyclerView.ViewHolder(binding.root) {
         fun bind(monthlySumEntity: MonthlySumEntity) {
             binding.rowData = monthlySumEntity
-            binding.root.setOnClickListener {
-                clickListener.onItemClick(monthlySumEntity)
-            }
         }
     }
 }

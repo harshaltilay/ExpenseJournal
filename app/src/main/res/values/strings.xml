@@ -43,7 +43,7 @@
     </string>
 
     <string name="string_opinion_overspent">
-      &lt;font color="#FF0000"> Overspent: &lt;b>%1s&lt;/b>&lt;/font>
+      &lt;font color="#FF0000"> overspent: &lt;b>%1s&lt;/b>&lt;/font>
     </string>
 
     <string name="string_opinion_safe">

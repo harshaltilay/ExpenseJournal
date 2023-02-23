@@ -85,9 +85,7 @@ fun String.Companion.getFriendlyDayAndMonth(date: Date): String {
 }
 
 fun String.Companion.getMonth(
-    date: Date,
-    upperCase: Boolean = false,
-    full: Boolean = false
+    date: Date, upperCase: Boolean = false, full: Boolean = false
 ): String {
     val localDateTime = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
     val month = localDateTime.month.getDisplayName(
@@ -117,8 +115,8 @@ fun String.Companion.getPostFixedNumber(i: Int): String {
     } else i.toString() + "th"
 }
 
-fun String.Companion.inCurrency(amount: Float?): String {
-    val format = NumberFormat.getCurrencyInstance(Locale("en", "IN"))
+fun String.Companion.inCurrency(amount: Float?, country: String = "IN"): String {
+    val format = NumberFormat.getCurrencyInstance(Locale("en", country))
     format.maximumFractionDigits = 2
     val amnt = format.format(amount)
     return if (amnt.split('.')[1].indexOf("00") != -1) amnt.split('.')[0]
