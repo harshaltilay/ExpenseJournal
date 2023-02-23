@@ -99,19 +99,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 android:fontFamily="@font/poppinsbold"
                 android:hint="IN"
-                tools:ignore="HardcodedText"
                 android:imeOptions="actionNext"
                 android:importantForAutofill="no"
                 android:inputType="textCapWords"
                 android:lines="1"
                 android:maxLength="2"
                 android:nextFocusForward="@+id/amount_daily_input"
+                android:textAllCaps="true"
                 android:textColor="@color/button_bg_blue"
                 android:textColorHint="#A1887F"
                 android:textSize="18sp"
-                android:textStyle="normal" />
+                android:textStyle="normal"
+                tools:ignore="HardcodedText" />
         </LinearLayout>
 
         <TextView
