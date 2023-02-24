@@ -291,15 +291,18 @@ class MainFragment : BaseFragment() {
         amount: String, touser: String, desc: String, category: Int
     ) {
         if (amount.isEmpty()) {
-            binding.amountInput.error = "Invalid amount"
+            val eMsg = getString(R.string.error_invalid_amount)
+            binding.amountInput.error = eMsg
             return
         }
         if (desc.isEmpty() || desc.length < 3) {
-            binding.descriptionInput.error = "Invalid description"
+            val eMsg = getString(R.string.error_invalid_desc)
+            binding.descriptionInput.error = eMsg
             return
         }
         if (touser.isEmpty() || touser.length < 2) {
-            binding.sentToInput.error = "Invalid reference"
+            val eMsg = getString(R.string.error_invalid_reference)
+            binding.sentToInput.error = eMsg
             return
         }
         val spendingEntity = SpendingEntity(
