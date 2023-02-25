@@ -5,9 +5,9 @@ package com.harshal.expensejournal.presentation.feature.main.list
 import androidx.lifecycle.MutableLiveData
 import com.harshal.expensejournal.domain.FailureException
 import com.harshal.expensejournal.domain.getFriendlyDateTime
-import com.harshal.expensejournal.domain.room.DebitEntity
+import com.harshal.expensejournal.domain.room.SpendingInfoEntity
 import com.harshal.expensejournal.domain.room.SpendingEntity
-import com.harshal.expensejournal.usecases.spending.FetchByDateUseCase
+import com.harshal.expensejournal.usecases.spending.FetchDebitsUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
@@ -18,8 +18,8 @@ import java.util.*
 class ByDateListFetcher(
     private val _viewModelScope: CoroutineScope,
     private var _job: Job?,
-    private val _spendList: MutableLiveData<List<DebitEntity>>,
-    private val _fetchByDateUseCase: FetchByDateUseCase,
+    private val _spendList: MutableLiveData<List<SpendingInfoEntity>>,
+    private val _fetchDebitsUseCase: FetchDebitsUseCase,
     private val _handleFailure: (FailureException) -> Unit
 ) : Clearable {
 
@@ -29,13 +29,13 @@ class ByDateListFetcher(
         fun get(
             viewModelScope: CoroutineScope,
             job: Job?,
-            spendList: MutableLiveData<List<DebitEntity>>,
-            fetchByDateUseCase: FetchByDateUseCase,
+            spendList: MutableLiveData<List<SpendingInfoEntity>>,
+            fetchDebitsUseCase: FetchDebitsUseCase,
             handle_failure: (FailureException) -> Unit
         ): ByDateListFetcher {
             return INSTANCE ?: synchronized(this) {
                 val instance = ByDateListFetcher(
-                    viewModelScope, job, spendList, fetchByDateUseCase, handle_failure
+                    viewModelScope, job, spendList, fetchDebitsUseCase, handle_failure
                 )
                 INSTANCE = instance
                 // return instance
@@ -46,7 +46,7 @@ class ByDateListFetcher(
 
 
     fun fetch(date: Date) {
-        _fetchByDateUseCase(date, _viewModelScope) {
+        _fetchDebitsUseCase(date, _viewModelScope) {
             it.fold(
                 _handleFailure, ::handleList
             )
@@ -57,10 +57,9 @@ class ByDateListFetcher(
 
         _job = _viewModelScope.launch {
             list.cancellable().collect { it ->
-                val newList = arrayListOf<DebitEntity>()
+                val newList = arrayListOf<SpendingInfoEntity>()
                 it.forEach {
-                    val entity = DebitEntity(
-                        type = 0,
+                    val entity = SpendingInfoEntity(
                         sid = it.sid,
                         title = it.desc,
                         time = String.getFriendlyDateTime(it.time),

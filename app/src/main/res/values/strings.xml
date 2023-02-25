@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">Hisaab</string>
+    <string name="app_name">Expense Journal</string>
     <string name="failure_db_error">Database Error: Please try after sometime.</string>
     <string name="action_ok">Okay</string>
-    <string name="today_friendly_date">
+    <string name="friendly_date_and_user">
         &lt;font color="#757575"> &lt;b>%1s &lt;/b>&lt;/font>
-        &lt;font color="#426DDC">%2s &lt;/font>
+        &lt;font color="#426DDC"> &lt;b>To&lt;/b>: %2s &lt;/font>
     </string>
 
     <string name="details_of_spending">Please specify the details of you spending.</string>
@@ -21,7 +21,6 @@
     <string name="back">Back</string>
     <string name="update_profile">Update profile</string>
     <string name="rrr">₹</string>
-
 
     <string name="string_limit_monthly">
       Monthly Limit :   &lt;b>%2s&lt;/b>
@@ -55,10 +54,19 @@
         &lt;font color="#426DDC"> week &lt;/font>
     </string>
 
-    <string name="string_today_friendly_date">
+    <string name="string_friendly_date_daily">
         &lt;font color="#000"> &lt;b>%1s&lt;/b>&lt;/font>
         &lt;font color="#757575">%2s&lt;/font>
     </string>
+
+    <string name="string_amount_safe">
+        &lt;font color="#002c56"> &lt;b>%1s&lt;/b>&lt;/font>
+    </string>
+
+    <string name="string_amount_danger">
+        &lt;font color="#FF2E63"> &lt;b>%1s&lt;/b>&lt;/font>
+    </string>
+
     <string name="add_expense">Add Expense</string>
     <string name="amount_is_spent_for">Amount is spent for…</string>
     <string name="received_by">Received by</string>
@@ -68,7 +76,10 @@
     <string name="profile">Profile</string>
     <string name="search_amp_history"><![CDATA[Search & History]]></string>
     <string name="your_country_code">Your country code</string>
+
+    <string name="error_invalid_username">Incorrect Username</string>
     <string name="error_invalid_amount">Invalid amount</string>
     <string name="error_invalid_desc">Invalid description</string>
     <string name="error_invalid_reference">Invalid reference</string>
+    <string name="error_invalid_country_code">Invalid country code</string>
 </resources>

@@ -10,12 +10,12 @@ import android.view.*
 import com.harshal.expensejournal.R
 import com.harshal.expensejournal.databinding.DialogUpdateDetailsBinding
 import com.harshal.expensejournal.domain.inCurrency
-import com.harshal.expensejournal.domain.room.DebitEntity
+import com.harshal.expensejournal.domain.room.SpendingInfoEntity
 
 class UpdateDetailsDialog(
-    contxt: Context,
+    private val contxt: Context,
     private val _activity: Activity,
-    private val _entity: DebitEntity,
+    private val _entity: SpendingInfoEntity,
     val onSubmit: (desc: String, category: Int, sid: Int) -> Unit
 ) : Dialog(contxt) {
 
@@ -61,7 +61,7 @@ class UpdateDetailsDialog(
             else -> 3
         }
         if (desc.isBlank() || desc.length <= 1) {
-            binding.descriptionInput.error = "Invalid description"
+            binding.descriptionInput.error = contxt.getString(R.string.error_invalid_desc)
             return
         }
         dismiss()

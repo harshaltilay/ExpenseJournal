@@ -38,12 +38,12 @@ class ByMonthAdapter
         notifyDataSetChanged()
     }
 
-    private lateinit var _recyclerView: RecyclerView
-
-    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
-        super.onAttachedToRecyclerView(recyclerView)
-        this._recyclerView = recyclerView
-    }
+//    private lateinit var _recyclerView: RecyclerView
+//
+//    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+//        super.onAttachedToRecyclerView(recyclerView)
+//        this._recyclerView = recyclerView
+//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
         RowMonthlyItemBinding.inflate(

@@ -22,7 +22,7 @@
             android:layout_gravity="center_vertical"
             android:fontFamily="@font/poppins"
             android:lines="1"
-            android:text="@{rowData.getFriendlyAmount()}"
+            android:text="@{rowData.getFriendlyAmount(context)}"
             android:textColor="@color/text_dark_blue_1"
             android:textSize="12sp"
             android:textStyle="bold" />

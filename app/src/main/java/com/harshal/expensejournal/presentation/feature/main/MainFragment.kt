@@ -35,7 +35,7 @@ import com.harshal.expensejournal.R
 import com.harshal.expensejournal.databinding.FragmentMainBinding
 import com.harshal.expensejournal.domain.*
 import com.harshal.expensejournal.domain.room.DailySumEntity
-import com.harshal.expensejournal.domain.room.DebitEntity
+import com.harshal.expensejournal.domain.room.SpendingInfoEntity
 import com.harshal.expensejournal.domain.room.SpendingEntity
 import com.harshal.expensejournal.domain.user.Quotes
 import com.harshal.expensejournal.framework.android.platform.ActivityDelegate
@@ -100,7 +100,7 @@ class MainFragment : BaseFragment() {
                 gotTo(R.id.action_to_profile)
             }
         }
-        mainActivityDelegate.fragmentIsReady(this)
+        mainActivityDelegate.fragmentIsReady()
     }
 
     override fun onStart() {
@@ -216,20 +216,18 @@ class MainFragment : BaseFragment() {
 
         binding.spendingListRecyclerView.layoutManager =
             BugFreeLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        debitListAdapter.clickListener = object : ClickListener<DebitEntity> {
-            override fun onItemClick(entity: DebitEntity) {
-                if (entity.type == 0) {
-                    val updateDialog = UpdateDetailsDialog(
-                        requireContext(), requireActivity(), entity
-                    ) { desc, category, sid ->
-                        _mainFragmentViewModel.updateSpendingDescription(desc, category, sid)
-                        hideKeyBoard()
-                    }
-                    updateDialog.setOnCancelListener {
-                        hideKeyBoard()
-                    }
-                    updateDialog.show()
+        debitListAdapter.clickListener = object : ClickListener<SpendingInfoEntity> {
+            override fun onItemClick(entity: SpendingInfoEntity) {
+                val updateDialog = UpdateDetailsDialog(
+                    requireContext(), requireActivity(), entity
+                ) { desc, category, sid ->
+                    _mainFragmentViewModel.updateSpendingDescription(desc, category, sid)
+                    hideKeyBoard()
                 }
+                updateDialog.setOnCancelListener {
+                    hideKeyBoard()
+                }
+                updateDialog.show()
             }
         }
         binding.spendingListRecyclerView.adapter = debitListAdapter
@@ -250,7 +248,7 @@ class MainFragment : BaseFragment() {
                 daysHistoryAdapter.collection = it ?: emptyList()
             }
 
-            observe(debitEntityList) {
+            observe(spendingInfoEntityList) {
                 debitListAdapter.collection = it ?: emptyList()
                 updateDayOpinion()
             }

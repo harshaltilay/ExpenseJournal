@@ -6,8 +6,7 @@ import com.harshal.expensejournal.R
 import com.harshal.expensejournal.domain.html
 import com.harshal.expensejournal.domain.inCurrency
 
-data class DebitEntity(
-    val type: Int,
+data class SpendingInfoEntity(
     val sid: Int,
     val title: String,
     val time: String,
@@ -21,24 +20,21 @@ data class DebitEntity(
             title
         )
     }
+
     fun getFriendlyDate(context: Context): Spanned {
         val splitString = time.split(' ')
         return String.html(
             context.getString(
-                R.string.today_friendly_date,
-                splitString[3] + " " + splitString[5],
-                "<b>To:</b> $touser"
+                R.string.friendly_date_and_user, splitString[3] + " " + splitString[5], touser
             )
         )
     }
 
-    fun getFriendlyAmount(): Spanned {
+    fun getFriendlyAmount(context: Context): Spanned {
         return String.html(
-            if (amount.toFloat() > limit.toFloat()) {
-                "<font color='#FF2E63'>${String.inCurrency(amount.toFloat())}</b>"
-            } else {
-                "<font color='#002c56'>${String.inCurrency(amount.toFloat())}</b>"
-            }
+            context.getString(
+                R.string.string_amount_safe, String.inCurrency(amount.toFloat())
+            )
         )
     }
 }

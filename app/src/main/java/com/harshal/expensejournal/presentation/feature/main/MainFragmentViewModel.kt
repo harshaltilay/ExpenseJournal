@@ -37,7 +37,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainFragmentViewModel @Inject constructor(
     private val _addSpendingUseCase: AddSpendingUseCase,
-    private val _fetchByDateUseCase: FetchByDateUseCase,
+    private val _fetchDebitsUseCase: FetchDebitsUseCase,
     private val _fetchByMonthsUseCase: FetchByMonthsUseCase,
     private val _fetchByWeeksUseCase: FetchByWeeksUseCase,
     private val _spendingHistoryUseCase: SpendingHistoryUseCase,
@@ -67,8 +67,9 @@ class MainFragmentViewModel @Inject constructor(
     private var _daysListJob: Job? = null
     private var _byDaysListFetcher: ByDaysListFetcher? = null
 
-    private val _debitEntityList: MutableLiveData<List<DebitEntity>> = MutableLiveData()
-    val debitEntityList: LiveData<List<DebitEntity>> = _debitEntityList
+    private val _spendingInfoEntityList: MutableLiveData<List<SpendingInfoEntity>> = MutableLiveData()
+    val spendingInfoEntityList: LiveData<List<SpendingInfoEntity>> = _spendingInfoEntityList
+
     private var _dateListJob: Job? = null
     private var _byDateListFetcher: ByDateListFetcher? = null
 
@@ -108,7 +109,7 @@ class MainFragmentViewModel @Inject constructor(
 
         _byDateListFetcher?.clear()
         _byDateListFetcher = ByDateListFetcher.get(
-            viewModelScope, _dateListJob, _debitEntityList, _fetchByDateUseCase, handleFailure
+            viewModelScope, _dateListJob, _spendingInfoEntityList, _fetchDebitsUseCase, handleFailure
         )
     }
 

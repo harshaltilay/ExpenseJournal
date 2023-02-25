@@ -25,7 +25,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.harshal.expensejournal.databinding.RowDebitEntityBinding
 import com.harshal.expensejournal.domain.ClickListener
-import com.harshal.expensejournal.domain.room.DebitEntity
+import com.harshal.expensejournal.domain.room.SpendingInfoEntity
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlin.properties.Delegates
@@ -34,9 +34,9 @@ import kotlin.properties.Delegates
 class DebitListAdapter
 @Inject constructor() : RecyclerView.Adapter<DebitListAdapter.ViewHolder>() {
 
-    internal lateinit var clickListener: ClickListener<DebitEntity>
+    internal lateinit var clickListener: ClickListener<SpendingInfoEntity>
 
-    internal var collection: List<DebitEntity> by Delegates.observable(emptyList()) { _, old, new ->
+    internal var collection: List<SpendingInfoEntity> by Delegates.observable(emptyList()) { _, old, new ->
         val diffCallback = DiffCallback(old, new)
         val diffResult = DiffUtil.calculateDiff(diffCallback)
         diffResult.dispatchUpdatesTo(this)
@@ -76,7 +76,7 @@ class DebitListAdapter
     }
 
     inner class DiffCallback(
-        private val oldList: List<DebitEntity>, private val newList: List<DebitEntity>
+        private val oldList: List<SpendingInfoEntity>, private val newList: List<SpendingInfoEntity>
     ) : DiffUtil.Callback() {
 
         override fun getOldListSize() = oldList.size

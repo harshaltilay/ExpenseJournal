@@ -15,31 +15,16 @@
  *  limitations under the License.
  *
  */
-
-
 package com.harshal.expensejournal.framework.android.platform
 
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
-import dagger.hilt.android.qualifiers.ApplicationContext
-import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class SharedPreferenceFramework @Inject constructor(@ApplicationContext var context: Context) {
-    init {
-        val masterKey =
-            MasterKey.Builder(context).setKeyScheme(MasterKey.KeyScheme.AES256_GCM).build()
-        cookiesPrivate = EncryptedSharedPreferences.create(
-            context,
-            "FINANCE_COOKIES",
-            masterKey, // masterKey created above
-            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
-        )
-    }
+class SharedPreferenceFramework {
 
     companion object {
         private lateinit var cookiesPrivate: SharedPreferences
@@ -47,9 +32,19 @@ class SharedPreferenceFramework @Inject constructor(@ApplicationContext var cont
 
         @Volatile
         private var INSTANCE: SharedPreferenceFramework? = null
+
         fun i(context: Context): SharedPreferenceFramework {
             return INSTANCE ?: synchronized(this) {
-                val instance = SharedPreferenceFramework(context)
+                val masterKey =
+                    MasterKey.Builder(context).setKeyScheme(MasterKey.KeyScheme.AES256_GCM).build()
+                cookiesPrivate = EncryptedSharedPreferences.create(
+                    context,
+                    "FINANCE_COOKIES",
+                    masterKey, // masterKey created above
+                    EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+                    EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+                )
+                val instance = SharedPreferenceFramework()
                 INSTANCE = instance
                 // return instance
                 instance

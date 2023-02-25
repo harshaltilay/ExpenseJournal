@@ -4,7 +4,7 @@
     <data>
         <variable
             name="rowData"
-            type="com.harshal.expensejournal.domain.room.DebitEntity" />
+            type="com.harshal.expensejournal.domain.room.SpendingInfoEntity" />
     </data>
 
 
@@ -60,7 +60,7 @@
             android:layout_gravity="center_vertical"
             android:fontFamily="@font/poppinsbold"
             android:lines="1"
-            android:text="@{rowData.getFriendlyAmount()}"
+            android:text="@{rowData.getFriendlyAmount(context)}"
             android:textColor="@color/text_dark_blue_1"
             android:textSize="17sp"
             android:textStyle="normal" />

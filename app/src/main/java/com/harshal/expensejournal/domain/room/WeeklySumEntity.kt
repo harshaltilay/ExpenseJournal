@@ -30,12 +30,12 @@ import java.util.*
 data class WeeklySumEntity(
     val amount: Float, var maxlimit: Float = 0f, val time: Date
 ) {
-    fun getFriendlyAmount(): Spanned {
+    fun getFriendlyAmount(context: Context): Spanned {
         return String.html(
             if (amount > maxlimit) {
-                "<font color='#FF2E63'>${String.inCurrency(amount)}</b>"
+                context.getString(R.string.string_amount_danger, String.inCurrency(amount))
             } else {
-                "<font color='#002c56'>${String.inCurrency(amount)}</b>"
+                context.getString(R.string.string_amount_safe, String.inCurrency(amount))
             }
         )
     }

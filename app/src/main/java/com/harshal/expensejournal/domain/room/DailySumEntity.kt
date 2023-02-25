@@ -30,12 +30,12 @@ import java.util.*
 data class DailySumEntity(
     val amount: Float, var maxlimit: Float = 0f, val time: Date
 ) {
-    fun getFriendlyAmount(): Spanned {
+    fun getFriendlyAmount(context: Context): Spanned {
         return String.html(
             if (amount > maxlimit) {
-                "<font color='#FF2E63'>${String.inCurrency(amount)}</b>"
+                context.getString(R.string.string_amount_danger, String.inCurrency(amount))
             } else {
-                "<font color='#002c56'>${String.inCurrency(amount)}</b>"
+                context.getString(R.string.string_amount_safe, String.inCurrency(amount))
             }
         )
     }
@@ -44,7 +44,7 @@ data class DailySumEntity(
         val splitString = String.getFriendlyDayAndMonth(time).split(' ')
         return String.html(
             context.getString(
-                R.string.string_today_friendly_date, splitString[0], splitString[1]
+                R.string.string_friendly_date_daily, splitString[0], splitString[1]
             )
         )
     }

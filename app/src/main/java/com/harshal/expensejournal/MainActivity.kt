@@ -30,7 +30,6 @@ import androidx.navigation.Navigation
 import com.harshal.expensejournal.databinding.ActivityMainBinding
 import com.harshal.expensejournal.domain.user.UserProfileEntity
 import com.harshal.expensejournal.framework.android.platform.ActivityDelegate
-import com.harshal.expensejournal.framework.android.platform.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -40,7 +39,6 @@ class MainActivity : AppCompatActivity(), ActivityDelegate {
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
     var isReady = false
-    private var _baseFragment: BaseFragment? = null
 
     override fun onSupportNavigateUp() =
         Navigation.findNavController(this, R.id.navHostFragment).navigateUp()
@@ -65,8 +63,7 @@ class MainActivity : AppCompatActivity(), ActivityDelegate {
         })
     }
 
-    override fun fragmentIsReady(baseFragment: BaseFragment) {
-        _baseFragment = baseFragment
+    override fun fragmentIsReady() {
         isReady = true
     }
 

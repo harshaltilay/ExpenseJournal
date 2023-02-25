@@ -43,22 +43,26 @@ class ByDayAdapter
         if (old.isEmpty() && neu.isNotEmpty()) {
             notifyDataSetChanged()
             selectItem()
-        } else {
-            old.forEachIndexed { index, dailySumEntity ->
-                if (dailySumEntity != neu[index]) {
-                    selectItem(index)
-                    return@forEachIndexed
-                }
+            return@observable
+        }
+
+        if (neu.size != old.size) return@observable
+
+        old.forEachIndexed { index, dailySumEntity ->
+            if (dailySumEntity != neu[index]) {
+                selectItem(index)
+                return@forEachIndexed
             }
         }
+
     }
 
-    private lateinit var _recyclerView: RecyclerView
-
-    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
-        super.onAttachedToRecyclerView(recyclerView)
-        this._recyclerView = recyclerView
-    }
+//    private lateinit var _recyclerView: RecyclerView
+//
+//    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+//        super.onAttachedToRecyclerView(recyclerView)
+//        this._recyclerView = recyclerView
+//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
         RowDailyItemBinding.inflate(

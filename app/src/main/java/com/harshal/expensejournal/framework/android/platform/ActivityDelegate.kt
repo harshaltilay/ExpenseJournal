@@ -21,5 +21,5 @@ package com.harshal.expensejournal.framework.android.platform
 
 
 interface ActivityDelegate {
-    fun fragmentIsReady(baseFragment: BaseFragment)
+    fun fragmentIsReady()
 }

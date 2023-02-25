@@ -26,6 +26,7 @@ import android.os.Bundle
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import androidx.navigation.fragment.findNavController
+import com.harshal.expensejournal.R
 import com.harshal.expensejournal.databinding.FragmentProfileBinding
 import com.harshal.expensejournal.domain.invisible
 import com.harshal.expensejournal.domain.user.UserProfileEntity
@@ -81,7 +82,7 @@ class ProfileFragment : BaseFragment() {
         setUpObservers()
         setupViewAdapters()
         assignActions()
-        mainActivityDelegate.fragmentIsReady(this)
+        mainActivityDelegate.fragmentIsReady()
     }
 
 
@@ -141,24 +142,24 @@ class ProfileFragment : BaseFragment() {
         val countryCode = binding.countryCodeInput.text.toString().trim()
 
         if (username.isEmpty() || username.length < 2) {
-            binding.usernameInput.error = "Invalid reference"
+            binding.usernameInput.error = getString(R.string.error_invalid_username)
             return
         }
         if (daily.isEmpty() || daily.toFloat() < 1f) {
-            binding.amountDailyInput.error = "Invalid amount"
+            binding.amountDailyInput.error = getString(R.string.error_invalid_amount)
             return
         }
         if (weekly.isEmpty() || weekly.toFloat() < 1f) {
-            binding.amountWeeklyInput.error = "Invalid amount"
+            binding.amountWeeklyInput.error = getString(R.string.error_invalid_amount)
             return
         }
         if (monthly.isEmpty() || monthly.toFloat() < 1f) {
-            binding.amountMonthlyInput.error = "Invalid amount"
+            binding.amountMonthlyInput.error = getString(R.string.error_invalid_amount)
             return
         }
 
         if (!isValidLocale(countryCode)) {
-            binding.countryCodeInput.error = "Invalid country code"
+            binding.countryCodeInput.error = getString(R.string.error_invalid_country_code)
             return
         }
 

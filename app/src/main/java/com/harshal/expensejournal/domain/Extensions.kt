@@ -71,11 +71,11 @@ fun String.Companion.getFriendlyDateTime(date: Date): String {
     val minute = localDateTime.minute.let {
         if (it < 10) "0${it}" else it
     }
-    val seconds = localDateTime.second.let {
-        if (it < 10) "0${it}" else it
-    }
+//    val seconds = localDateTime.second.let {
+//        if (it < 10) "0${it}" else it
+//    }
     //Example  12 AUG 2020 12:23 PM
-    return "$day $month $year $hours:$minute:$seconds $amPm"
+    return "$day $month $year $hours:$minute $amPm"
 }
 
 fun String.Companion.getFriendlyDayAndMonth(date: Date): String {

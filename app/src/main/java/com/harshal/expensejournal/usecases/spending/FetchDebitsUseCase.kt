@@ -28,11 +28,11 @@ import kotlinx.coroutines.flow.Flow
 import java.util.*
 import javax.inject.Inject
 
-class FetchByDateUseCase
+class FetchDebitsUseCase
 @Inject constructor(private val _spendingRepo: SpendingRepo) :
     BaseUseCase<Flow<List<SpendingEntity>>, Date>() {
 
     override suspend fun run(params: Date): Either<FailureException, Flow<List<SpendingEntity>>> =
-        _spendingRepo.spendingByDate(params)
+        _spendingRepo.fetchDebits(params)
 
 }
