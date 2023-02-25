@@ -7,7 +7,7 @@ A lightweight minimalistic spending tracker to helps us keep monitoring our expe
  </p>
 
  <a href="https://github.com/harshaltilay/ExpenseJournal">
-    <img src="screenshot.jpg" alt="Logo" width="320" height="660">
+    <img src="screenshot.png" alt="Logo" width="320" height="660">
   </a>
 
 This is two screens only app, but serve its purpose good enough of having insight on CLEAN Architecture.
