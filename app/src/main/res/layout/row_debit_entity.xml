@@ -4,7 +4,7 @@
     <data>
         <variable
             name="rowData"
-            type="com.harshal.hisaab.domain.room.DebitEntity" />
+            type="com.harshal.expensejournal.domain.room.DebitEntity" />
     </data>
 
 

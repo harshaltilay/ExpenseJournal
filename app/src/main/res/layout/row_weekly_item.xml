@@ -6,7 +6,7 @@
 
         <variable
             name="rowData"
-            type="com.harshal.hisaab.domain.room.WeeklySumEntity" />
+            type="com.harshal.expensejournal.domain.room.WeeklySumEntity" />
     </data>
 
     <LinearLayout

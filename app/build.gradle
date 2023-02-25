@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace 'com.harshal.hisaab'
+    namespace 'com.harshal.expensejournal'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.harshal.hisaab"
+        applicationId "com.harshal.expensejournal"
         minSdk 26
         targetSdk 33
         versionCode 1

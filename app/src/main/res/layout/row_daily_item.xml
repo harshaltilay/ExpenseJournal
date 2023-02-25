@@ -24,7 +24,7 @@
     <data>
         <variable
             name="rowData"
-            type="com.harshal.hisaab.domain.room.DailySumEntity" />
+            type="com.harshal.expensejournal.domain.room.DailySumEntity" />
     </data>
 
     <LinearLayout

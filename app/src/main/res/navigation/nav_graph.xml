@@ -5,7 +5,7 @@
     app:startDestination="@id/idMainFragment">
     <fragment
         android:id="@+id/idMainFragment"
-        android:name="com.harshal.hisaab.presentation.feature.main.MainFragment"
+        android:name="com.harshal.expensejournal.presentation.feature.main.MainFragment"
         android:label="Main Fragment"
         tools:layout="@layout/fragment_main">
         <action
@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/idProfileFragment"
-        android:name="com.harshal.hisaab.presentation.feature.profile.ProfileFragment"
+        android:name="com.harshal.expensejournal.presentation.feature.profile.ProfileFragment"
         android:label="Profile Fragment"
         tools:layout="@layout/fragment_profile">
         <action

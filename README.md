@@ -1,13 +1,13 @@
 <!-- PROJECT LOGO -->
 <a name="readme-top"></a>
 
-## Hisaab
+## Expense Journal
  <p align="left">
 A lightweight minimalistic spending tracker to helps us keep monitoring our expenses.
  </p>
 
- <a href="https://github.com/harshaltilay/Hisaab">
-    <img src="hisaab.jpg" alt="Logo" width="320" height="660">
+ <a href="https://github.com/harshaltilay/ExpenseJournal">
+    <img src="screenshot.jpg" alt="Logo" width="320" height="660">
   </a>
 
 This is two screens only app, but serve its purpose good enough of having insight on CLEAN Architecture.
