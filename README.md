@@ -2,30 +2,31 @@
 [![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
 <a name="readme-top"></a>
  <p align="left">
-A lightweight minimalistic spending tracker to helps us keep monitoring our expenses.
+ A lightweight minimalistic spending tracker to helps us keep monitoring our expenses.
  </p>
   
-Not time to have a look at project ?
- <a href="https://github.com/harshaltilay/ExpenseJournal/raw/master/ExpenseJournal.apk">
+ Not time to have a look at project ?
+<a href="https://github.com/harshaltilay/ExpenseJournal/raw/master/ExpenseJournal.apk">
     Just downoad the apk to see it in action
-  </a>
+</a>
 
- <a href="https://github.com/harshaltilay/ExpenseJournal">
-    <img src="screenshot1.png" alt="Logo" width="320" height="660">
-  </a>
-App consist of two screens.
-1) Profile screen where user set his name and mention daily, weekly and monthly max spending targets. 
-2) Main screen that constantly shows user his daily, weekly, monthly spending details and whether the limits set is exceeded or not...
+#### We are using...
 
-#### You must be familiar with...
-
-1) Kotlin 
+1) Kotlin
 2) Generics
 3) HILT2
 4) Flow basics
 5) RoomDB
 6) Navigation Component
 7) Android Studio IDE
+8) 
+<a href="https://github.com/harshaltilay/ExpenseJournal">
+    <img src="screenshot1.png" alt="Logo" width="320" height="660">
+</a>
+
+App consist of two screens.
+1) Profile screen where user set his name and mention daily, weekly and monthly max spending targets. 
+2) Main screen that constantly shows user his daily, weekly, monthly spending details and whether the limits set is exceeded or not...
 
 #### The code is divided in to five layers of CLEAN Architecture Pattern.
 
