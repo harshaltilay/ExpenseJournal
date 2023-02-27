@@ -64,6 +64,7 @@ data class SpendingEntity(
         )
     }
 }
+
 //category
 //R.id.essential -> 1
 //R.id.casual -> 2
