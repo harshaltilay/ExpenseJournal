@@ -1,7 +1,6 @@
-<!-- PROJECT LOGO -->
-<a name="readme-top"></a>
-
 ## Expense Journal
+[![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
+<a name="readme-top"></a>
  <p align="left">
 A lightweight minimalistic spending tracker to helps us keep monitoring our expenses.
  </p>
