@@ -1,4 +1,4 @@
-<!-- PROJECT LOGO -->
+[![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
 <a name="readme-top"></a>
 
 ## Expense Journal
