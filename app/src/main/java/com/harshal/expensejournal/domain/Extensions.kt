@@ -38,7 +38,6 @@ fun <L : LiveData<FailureException>> LifecycleOwner.failure(
     liveData: L, body: (FailureException?) -> Unit
 ) = liveData.observe(this, Observer(body))
 
-
 //fun View.isVisible(): Boolean {
 //    return this.visibility == View.VISIBLE
 //}
@@ -58,74 +57,87 @@ fun View.invisible() {
 fun String.Companion.empty() = ""
 
 fun String.Companion.getFriendlyDateTime(date: Date): String {
-    val localDateTime = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
-    val day = getPostFixedNumber(localDateTime.dayOfMonth)
-    val month = localDateTime.month.getDisplayName(TextStyle.SHORT, Locale.ENGLISH).uppercase()
-    val year = localDateTime.year
-    val amPm = if (localDateTime.hour >= 12) " PM" else " AM"
-    val hours = localDateTime.hour.let { hour ->
-        (if (hour > 12) hour - 12 else hour).run {
-            if (this < 10) "0$this" else this
+    return with(date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()) {
+        val day = getPostFixedNumber(dayOfMonth)
+        val month = month.getDisplayName(TextStyle.SHORT, Locale.ENGLISH).uppercase()
+        val year = year
+        val amPm = if (hour >= 12) " PM" else " AM"
+
+        val hours = hour.let { hour ->
+            (if (hour > 12) hour - 12 else hour).let {
+                if (it < 10) "0$it" else it
+            }
         }
-    }
-    val minute = localDateTime.minute.let {
-        if (it < 10) "0${it}" else it
-    }
+        val minute = minute.let {
+            if (it < 10) "0${it}" else it
+        }
 //    val seconds = localDateTime.second.let {
 //        if (it < 10) "0${it}" else it
 //    }
-    //Example  12 AUG 2020 12:23 PM
-    return "$day $month $year $hours:$minute $amPm"
+        //Example  12 AUG 2020 12:23 PM
+        "$day $month $year $hours:$minute $amPm"
+    }
 }
 
 fun String.Companion.getFriendlyDayAndMonth(date: Date): String {
-    val localDateTime = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
-    val day = getPostFixedNumber(localDateTime.dayOfMonth)
-    val month = localDateTime.month.getDisplayName(TextStyle.SHORT, Locale.ENGLISH)
-    return "$day $month"
+    return with(date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()) {
+        "${getPostFixedNumber(dayOfMonth)} ${month.getDisplayName(TextStyle.SHORT, Locale.ENGLISH)}"
+    }
 }
 
 fun String.Companion.getMonth(
     date: Date, upperCase: Boolean = false, full: Boolean = false
 ): String {
-    val localDateTime = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
-    val month = localDateTime.month.getDisplayName(
-        if (full) TextStyle.FULL else TextStyle.SHORT, Locale.getDefault()
-    )
-    return if (upperCase) month.uppercase()
-    else month
+    return with(date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()) {
+        month.getDisplayName(
+            if (full) TextStyle.FULL else TextStyle.SHORT, Locale.getDefault()
+        ).let {
+            if (upperCase) it.uppercase()
+            else it
+        }
+    }
 }
 
 fun String.Companion.getWeekOfMonth(date: Date): String {
-    val now = Calendar.getInstance()
-    now.time = date
-    return getPostFixedNumber(now[Calendar.WEEK_OF_MONTH])
+    return with(Calendar.getInstance()) {
+        time = date
+        getPostFixedNumber(this[Calendar.WEEK_OF_MONTH])
+    }
 }
 
 fun String.Companion.getPostFixedNumber(i: Int): String {
-    val j = i.rem(10)
-    val k = i.rem(100)
-    if (j == 1 && k != 11) {
-        return i.toString() + "st"
+    return with(i) {
+        val j = rem(10)
+        val k = rem(100)
+        when {
+            (j == 1 && k != 11) -> {
+                return toString() + "st"
+            }
+
+            (j == 2 && k != 12) -> {
+                return toString() + "nd"
+            }
+
+            (j == 3 && k != 13) -> {
+                toString() + "rd"
+            }
+            else -> toString() + "th"
+        }
     }
-    if (j == 2 && k != 12) {
-        return i.toString() + "nd"
-    }
-    return if (j == 3 && k != 13) {
-        i.toString() + "rd"
-    } else i.toString() + "th"
 }
 
-fun String.Companion.inCurrency(amount: Float?): String {
-    val format = NumberFormat.getCurrencyInstance(Locale("en", MainActivity.curUser!!.isoCountry))
-    format.maximumFractionDigits = 2
-    val amnt = format.format(amount)
-    return try {
-        if (amnt.split('.')[1].indexOf("00") != -1) amnt.split('.')[0] else amnt
-    } catch (e: Exception) {
-        amnt
+fun String.Companion.inCurrency(amount: Float): String {
+    return with(amount) {
+        val format =
+            NumberFormat.getCurrencyInstance(Locale("en", MainActivity.curUser!!.isoCountry))
+        format.maximumFractionDigits = 2
+        val amnt = format.format(this)
+        try {
+            if (amnt.split('.')[1].indexOf("00") != -1) amnt.split('.')[0] else amnt
+        } catch (e: Exception) {
+            amnt
+        }
     }
-
 }
 
 fun String.Companion.html(str: String): Spanned {
