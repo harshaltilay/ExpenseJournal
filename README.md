@@ -10,6 +10,11 @@
     Just downoad the apk to see it in action
 </a>
 
+<a href="https://github.com/harshaltilay/ExpenseJournal">
+    <img src="screenshot1.png" alt="Logo" width="320" height="660">
+</a>
+
+
 #### We are using...
 
 1) Kotlin
@@ -19,10 +24,6 @@
 5) RoomDB
 6) Navigation Component
 7) Android Studio IDE
-8) 
-<a href="https://github.com/harshaltilay/ExpenseJournal">
-    <img src="screenshot1.png" alt="Logo" width="320" height="660">
-</a>
 
 App consist of two screens.
 1) Profile screen where user set his name and mention daily, weekly and monthly max spending targets. 
