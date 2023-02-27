@@ -24,7 +24,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.harshal.expensejournal.domain.room.*
 import com.harshal.expensejournal.framework.android.platform.BaseViewModel
-import com.harshal.expensejournal.presentation.feature.main.list.ByDateListFetcher
+import com.harshal.expensejournal.presentation.feature.main.list.SpendingListFetcher
 import com.harshal.expensejournal.presentation.feature.main.list.ByDaysListFetcher
 import com.harshal.expensejournal.presentation.feature.main.list.ByMonthListFetcher
 import com.harshal.expensejournal.presentation.feature.main.list.ByWeekListFetcher
@@ -43,7 +43,6 @@ class MainFragmentViewModel @Inject constructor(
     private val _spendingHistoryUseCase: SpendingHistoryUseCase,
     private val _updateSpendingUseCase: UpdateSpendingUseCase
 ) : BaseViewModel() {
-
 
 //    var userProfileEntity: UserProfileEntity? = null
 //        private set
@@ -67,11 +66,11 @@ class MainFragmentViewModel @Inject constructor(
     private var _daysListJob: Job? = null
     private var _byDaysListFetcher: ByDaysListFetcher? = null
 
-    private val _spendingInfoEntityList: MutableLiveData<List<SpendingInfoEntity>> = MutableLiveData()
-    val spendingInfoEntityList: LiveData<List<SpendingInfoEntity>> = _spendingInfoEntityList
+    private val _spendingInfoEntityList: MutableLiveData<List<SpendingEntity>> = MutableLiveData()
+    val spendingInfoEntityList: LiveData<List<SpendingEntity>> = _spendingInfoEntityList
 
     private var _dateListJob: Job? = null
-    private var _byDateListFetcher: ByDateListFetcher? = null
+    private var _spendingListFetcher: SpendingListFetcher? = null
 
     fun beginFlow() {
         _byMonthListFetcher?.clear()
@@ -107,21 +106,21 @@ class MainFragmentViewModel @Inject constructor(
         _byDaysListFetcher?.fetch()
 
 
-        _byDateListFetcher?.clear()
-        _byDateListFetcher = ByDateListFetcher.get(
+        _spendingListFetcher?.clear()
+        _spendingListFetcher = SpendingListFetcher.get(
             viewModelScope, _dateListJob, _spendingInfoEntityList, _fetchDebitsUseCase, handleFailure
         )
     }
 
     fun fetchByDate(date: Date) {
-        _byDateListFetcher?.fetch(date)
+        _spendingListFetcher?.fetch(date)
     }
 
     fun endFlow() {
         _byMonthListFetcher?.clear()
         _byWeekListFetcher?.clear()
         _byDaysListFetcher?.clear()
-        _byDateListFetcher?.clear()
+        _spendingListFetcher?.clear()
     }
 
     fun addSpending(spendingEntity: SpendingEntity) =

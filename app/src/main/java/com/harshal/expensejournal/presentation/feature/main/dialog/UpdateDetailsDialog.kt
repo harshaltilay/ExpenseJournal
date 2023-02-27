@@ -10,12 +10,12 @@ import android.view.*
 import com.harshal.expensejournal.R
 import com.harshal.expensejournal.databinding.DialogUpdateDetailsBinding
 import com.harshal.expensejournal.domain.inCurrency
-import com.harshal.expensejournal.domain.room.SpendingInfoEntity
+import com.harshal.expensejournal.domain.room.SpendingEntity
 
 class UpdateDetailsDialog(
     private val contxt: Context,
     private val _activity: Activity,
-    private val _entity: SpendingInfoEntity,
+    private val _entity: SpendingEntity,
     val onSubmit: (desc: String, category: Int, sid: Int) -> Unit
 ) : Dialog(contxt) {
 
@@ -39,10 +39,10 @@ class UpdateDetailsDialog(
         val userName = if (_entity.touser.length < 13) _entity.touser
         else _entity.touser.substring(0, _entity.touser.length - 1) + "..."
 
-        "$userName : ${String.inCurrency(_entity.amount.toFloat())}".also {
+        "$userName : ${String.inCurrency(_entity.amount)}".also {
             binding.sentToTv.text = it
         }
-        _entity.title.also { binding.descriptionInput.setText(it) }
+        _entity.desc.also { binding.descriptionInput.setText(it) }
     }
 
     override fun onStart() {

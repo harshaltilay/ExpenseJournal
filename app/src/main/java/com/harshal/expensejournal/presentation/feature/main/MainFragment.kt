@@ -35,7 +35,6 @@ import com.harshal.expensejournal.R
 import com.harshal.expensejournal.databinding.FragmentMainBinding
 import com.harshal.expensejournal.domain.*
 import com.harshal.expensejournal.domain.room.DailySumEntity
-import com.harshal.expensejournal.domain.room.SpendingInfoEntity
 import com.harshal.expensejournal.domain.room.SpendingEntity
 import com.harshal.expensejournal.domain.user.Quotes
 import com.harshal.expensejournal.framework.android.platform.ActivityDelegate
@@ -43,7 +42,7 @@ import com.harshal.expensejournal.framework.android.platform.BaseFragment
 import com.harshal.expensejournal.presentation.feature.main.adapters.ByDayAdapter
 import com.harshal.expensejournal.presentation.feature.main.adapters.ByMonthAdapter
 import com.harshal.expensejournal.presentation.feature.main.adapters.ByWeekAdapter
-import com.harshal.expensejournal.presentation.feature.main.adapters.DebitListAdapter
+import com.harshal.expensejournal.presentation.feature.main.adapters.SpendingListAdapter
 import com.harshal.expensejournal.presentation.feature.main.dialog.UpdateDetailsDialog
 import com.harshal.expensejournal.usecases.user.GetUserInfoUseCase
 import dagger.hilt.android.AndroidEntryPoint
@@ -68,7 +67,7 @@ class MainFragment : BaseFragment() {
     lateinit var daysHistoryAdapter: ByDayAdapter
 
     @Inject
-    lateinit var debitListAdapter: DebitListAdapter
+    lateinit var SpendingListAdapter: SpendingListAdapter
 
     private var _binding: FragmentMainBinding? = null
     val binding get() = _binding!!
@@ -216,8 +215,8 @@ class MainFragment : BaseFragment() {
 
         binding.spendingListRecyclerView.layoutManager =
             BugFreeLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        debitListAdapter.clickListener = object : ClickListener<SpendingInfoEntity> {
-            override fun onItemClick(entity: SpendingInfoEntity) {
+        SpendingListAdapter.clickListener = object : ClickListener<SpendingEntity> {
+            override fun onItemClick(entity: SpendingEntity) {
                 val updateDialog = UpdateDetailsDialog(
                     requireContext(), requireActivity(), entity
                 ) { desc, category, sid ->
@@ -230,7 +229,7 @@ class MainFragment : BaseFragment() {
                 updateDialog.show()
             }
         }
-        binding.spendingListRecyclerView.adapter = debitListAdapter
+        binding.spendingListRecyclerView.adapter = SpendingListAdapter
     }
 
     override fun setUpObservers() {
@@ -249,7 +248,7 @@ class MainFragment : BaseFragment() {
             }
 
             observe(spendingInfoEntityList) {
-                debitListAdapter.collection = it ?: emptyList()
+                SpendingListAdapter.collection = it ?: emptyList()
                 updateDayOpinion()
             }
 

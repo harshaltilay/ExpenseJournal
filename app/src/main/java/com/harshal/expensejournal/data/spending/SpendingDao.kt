@@ -11,6 +11,9 @@ import java.util.*
 @Dao
 interface SpendingDao {
 
+    @Query("DELETE FROM spending WHERE strftime('%d%m%Y',date(time/1000, 'unixepoch', 'localtime')) = strftime('%d%m%Y',date(:today/1000, 'unixepoch', 'localtime'))")
+    fun deleteTodayDetails(today: Long)
+
     @Insert(onConflict = REPLACE)
     fun addSpending(spendingEntity: SpendingEntity)
 

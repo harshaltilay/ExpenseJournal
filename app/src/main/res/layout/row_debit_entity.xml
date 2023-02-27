@@ -4,7 +4,7 @@
     <data>
         <variable
             name="rowData"
-            type="com.harshal.expensejournal.domain.room.SpendingInfoEntity" />
+            type="com.harshal.expensejournal.domain.room.SpendingEntity" />
     </data>
 
 

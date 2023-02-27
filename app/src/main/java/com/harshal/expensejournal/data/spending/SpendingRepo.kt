@@ -25,6 +25,7 @@ interface SpendingRepo {
     ) : SpendingRepo {
 
         override fun fetchDebits(params: Date): Either<FailureException, Flow<List<SpendingEntity>>> {
+            //  _spendingDao.deleteTodayDetails(Calendar.getInstance().time.time)
             return try {
                 Either.Right(
                     _spendingDao.fetchDebits(params.time)

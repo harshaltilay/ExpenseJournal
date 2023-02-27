@@ -77,9 +77,11 @@ class ByDayAdapter
     private fun selectItem(position: Int = -1) {
         if (collection.isNotEmpty()) {
             notifyItemChanged(selectedPosition)
-            selectedPosition = if (position == -1) selectedPosition else position
+            selectedPosition = if (position == -1) collection.size - 1 else position
             clickListener.onItemClick(collection[selectedPosition])
             notifyItemChanged(selectedPosition)
+        } else {
+            notifyDataSetChanged()
         }
     }
 

@@ -19,9 +19,15 @@
 
 package com.harshal.expensejournal.domain.room
 
+import android.content.Context
+import android.text.Spanned
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.harshal.expensejournal.R
+import com.harshal.expensejournal.domain.getFriendlyDateTime
+import com.harshal.expensejournal.domain.html
+import com.harshal.expensejournal.domain.inCurrency
 import java.util.*
 
 @Entity(tableName = "spending")
@@ -32,7 +38,32 @@ data class SpendingEntity(
     @ColumnInfo(name = "desc") val desc: String,
     @ColumnInfo(name = "category") val category: Int,
     @ColumnInfo(name = "time", defaultValue = "CURRENT_TIMESTAMP") val time: Date
-)
+) {
+    fun getFriendlyTitle(): Spanned {
+        return String.html(
+            desc
+        )
+    }
+
+    fun getFriendlyDate(context: Context): Spanned {
+        return String.getFriendlyDateTime(time).split(' ').let {
+            String.html(
+                context.getString(
+                    R.string.friendly_date_and_user, it[3] + " " + it[5], touser
+                )
+            )
+        }
+
+    }
+
+    fun getFriendlyAmount(context: Context): Spanned {
+        return String.html(
+            context.getString(
+                R.string.string_amount_safe, String.inCurrency(amount)
+            )
+        )
+    }
+}
 //category
 //R.id.essential -> 1
 //R.id.casual -> 2
