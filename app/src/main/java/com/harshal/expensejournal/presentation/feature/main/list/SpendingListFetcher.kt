@@ -28,6 +28,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.cancellable
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.util.*
 
@@ -71,7 +72,7 @@ class SpendingListFetcher(
 
     private fun handleList(list: Flow<List<SpendingEntity>>) {
         _job = _viewModelScope.launch {
-            list.cancellable().collect {
+            list.cancellable().collectLatest {
                 _spendList.postValue(it)
             }
         }

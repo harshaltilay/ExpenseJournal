@@ -10,6 +10,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.cancellable
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class ByMonthListFetcher(
@@ -59,7 +60,7 @@ class ByMonthListFetcher(
 
     private fun handleList(list: Flow<List<MonthlySumEntity>>) {
         _job = _viewModelScope.launch {
-            list.cancellable().collect { monthlyDebitEntity ->
+            list.cancellable().collectLatest { monthlyDebitEntity ->
                 val newList = arrayListOf<MonthlySumEntity>()
                 var totalCount = 0f
                 monthlyDebitEntity.forEach {

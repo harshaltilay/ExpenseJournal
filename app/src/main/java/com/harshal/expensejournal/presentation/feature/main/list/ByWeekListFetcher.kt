@@ -10,6 +10,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.cancellable
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class ByWeekListFetcher(
@@ -59,7 +60,7 @@ class ByWeekListFetcher(
 
     private fun handleList(list: Flow<List<WeeklySumEntity>>) {
         _job = _viewModelScope.launch {
-            list.cancellable().collect { WeeklyDebitEntity ->
+            list.cancellable().collectLatest { WeeklyDebitEntity ->
                 val newList = arrayListOf<WeeklySumEntity>()
                 var totalCount = 0f
                 WeeklyDebitEntity.forEach {

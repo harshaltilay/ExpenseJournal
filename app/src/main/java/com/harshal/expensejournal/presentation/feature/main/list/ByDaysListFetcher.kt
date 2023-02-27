@@ -10,6 +10,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.cancellable
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class ByDaysListFetcher(
@@ -49,7 +50,7 @@ class ByDaysListFetcher(
 
     private fun handleList(list: Flow<List<DailySumEntity>>) {
         _job = _viewModelScope.launch {
-            list.cancellable().collect { dailySumEntity ->
+            list.cancellable().collectLatest { dailySumEntity ->
                 val newList = arrayListOf<DailySumEntity>()
                 dailySumEntity.forEach {
                     it.maxlimit = MainActivity.curUser!!.dailyMax
