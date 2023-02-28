@@ -24,6 +24,7 @@
 5) RoomDB
 6) Navigation Component
 7) Android Studio IDE
+8) CLEAN Architecture
 
 App consist of two screens. Profile screen where user set his name and mention daily, weekly and monthly max spending targets. Main screen that constantly shows user his daily, weekly, monthly spending details and whether the limits set is exceeded or not.
 
