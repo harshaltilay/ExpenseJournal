@@ -100,7 +100,7 @@ class ByDayAdapter
         override fun getNewListSize() = newList.size
 
         override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-            return oldList[oldItemPosition].amount == newList[newItemPosition].amount
+            return oldList[oldItemPosition].amount == newList[newItemPosition].amount && oldList[oldItemPosition].time == newList[newItemPosition].time
         }
 
         override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
