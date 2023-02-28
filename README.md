@@ -25,16 +25,18 @@
 6) Navigation Component
 7) Android Studio IDE
 
-App consist of two screens.
-1) Profile screen where user set his name and mention daily, weekly and monthly max spending targets. 
-2) Main screen that constantly shows user his daily, weekly, monthly spending details and whether the limits set is exceeded or not...
+App consist of two screens. Profile screen where user set his name and mention daily, weekly and monthly max spending targets. Main screen that constantly shows user his daily, weekly, monthly spending details and whether the limits set is exceeded or not.
 
-The code is divided in to five layers of CLEAN Architecture Pattern which is highly useful for conducting unit, integration and UI testing as well as better code management when the team and number of aap screens  are very big.
+The code is divided in to five layers of CLEAN Architecture Pattern. 
+
 <b>1. Presentation.</b><br> 
 <b>2. Use cases.</b><br> 
 <b>3. Domain.</b><br> 
 <b>4. Data.</b><br> 
-<b>5. Framework.</b><br> 
+<b>5. Framework.</b><br>
+
+This is very useful for conducting tests as well as code management when the project is really huge.
+
 
 
 ### License
