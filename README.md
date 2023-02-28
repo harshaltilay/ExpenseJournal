@@ -5,9 +5,9 @@
  A lightweight minimalistic spending tracker to helps us keep monitoring our expenses.
  </p>
   
- Not time to have a look at project ?
+ No time to have a look at project ?
 <a href="https://github.com/harshaltilay/ExpenseJournal/raw/master/ExpenseJournal.apk">
-    Just downoad the apk to see it in action
+    Just download the apk to see it in action
 </a>
 
 <a href="https://github.com/harshaltilay/ExpenseJournal">
