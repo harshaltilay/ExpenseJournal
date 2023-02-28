@@ -29,22 +29,12 @@ App consist of two screens.
 1) Profile screen where user set his name and mention daily, weekly and monthly max spending targets. 
 2) Main screen that constantly shows user his daily, weekly, monthly spending details and whether the limits set is exceeded or not...
 
-#### The code is divided in to five layers of CLEAN Architecture Pattern.
-
+#### The code is divided in to five layers of CLEAN Architecture Pattern which is highly useful for conducting unit, integration and UI testing as well as better code management when the team and number of aap screens  are very big.
 <b>1. Presentation.</b><br> 
-This layer is used to interact with UI classes/elements(Activity, Fragment etc..)for respective App screens/views and their view models, adapters and other required classes to generate and work with and on UI thread. This layer also interact with UseCases layer for fulfilment of more deeper actions.
-
 <b>2. Use cases.</b><br> 
-This layer also called Interactors too. These are mainly set of predefined actions that are mostly triggered by user interactions like button clicks etc... Generally this is the point where we should switch from main UI thread to background thread to perform the processing by interacting with Domain and or Data layer.
-
 <b>3. Domain.</b><br> 
-This layer also referred as business logic layer. These are the rules of your business logic that is core functioning of our app. It also contains all the data models defined too. <i>Ideally, this should be the biggest layer in traditional software development, but ironically Android Apps usually tend to just draw an API based data on the screen of a phone</i>, so most of the core logic will consist of requesting and persisting data (defined in data layer), reducing this layer to much much smaller or almost empty code portion in Android development. This is virtually innermost layer, anything you defined here can be used in all the others layers but this layer should not be dependent on classes & interfaces of other layers.
-
 <b>4. Data.</b><br> 
-This layer keeps the abstract definitions and implementations of specific data usage. A place that hold repositories of remote/local data sources that uses respective Frameworks.
-
 <b>5. Framework.</b><br> 
-Encapsulates an interaction with framework so its code can be agnostic & reusable if we want the same framework to be used in other projects/apps this may consist of Room connection, Retrofit or device sensors initialization code. This must be as simple as possible for a framework to build as all the specific usages logic for it is placed in other layers mostly in data & other layers if necessary in rare scenario.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
