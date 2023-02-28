@@ -20,6 +20,7 @@ package com.harshal.expensejournal.presentation.feature.main.adapters
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.harshal.expensejournal.R
 import com.harshal.expensejournal.databinding.RowDailyItemBinding
@@ -38,23 +39,11 @@ class ByDayAdapter
 
     internal lateinit var clickListener: ClickListener<DailySumEntity>
 
-    internal var collection: List<DailySumEntity> by Delegates.observable(emptyList()) { _, old, neu ->
-
-        if (old.isEmpty() && neu.isNotEmpty()) {
-            notifyDataSetChanged()
-            selectItem()
-            return@observable
-        }
-
-        if (neu.size != old.size) return@observable
-
-        old.forEachIndexed { index, dailySumEntity ->
-            if (dailySumEntity != neu[index]) {
-                selectItem(index)
-                return@forEachIndexed
-            }
-        }
-
+    internal var collection: List<DailySumEntity> by Delegates.observable(emptyList()) { _, old, new ->
+        val diffCallback = DiffCallback(old, new)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+        diffResult.dispatchUpdatesTo(this)
+        selectItem()
     }
 
 //    private lateinit var _recyclerView: RecyclerView
@@ -76,12 +65,9 @@ class ByDayAdapter
 
     private fun selectItem(position: Int = -1) {
         if (collection.isNotEmpty()) {
-            notifyItemChanged(selectedPosition)
-            selectedPosition = if (position == -1) collection.size - 1 else position
+            selectedPosition =
+                if (position == -1 && selectedPosition >= collection.size) 0 else selectedPosition
             clickListener.onItemClick(collection[selectedPosition])
-            notifyItemChanged(selectedPosition)
-        } else {
-            notifyDataSetChanged()
         }
     }
 
@@ -102,6 +88,23 @@ class ByDayAdapter
             }
             if (selectedPosition == position) binding.root.setBackgroundResource(R.drawable.rect_border_gray)
             else binding.root.setBackgroundResource(R.color.white)
+        }
+    }
+
+    inner class DiffCallback(
+        private val oldList: List<DailySumEntity>, private val newList: List<DailySumEntity>
+    ) : DiffUtil.Callback() {
+
+        override fun getOldListSize() = oldList.size
+
+        override fun getNewListSize() = newList.size
+
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldList[oldItemPosition].amount == newList[newItemPosition].amount
+        }
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldList[oldItemPosition] == newList[newItemPosition]
         }
     }
 }
