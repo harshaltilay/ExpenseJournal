@@ -37,28 +37,6 @@ The code is divided in to five layers of CLEAN Architecture Pattern.
 
 This is very useful for conducting tests as well as code management when the project is really huge.
 
-
-
-### License
-```
-   Copyright (C) 2023 HARSHAL TILAY
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-```
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 <!-- CONTACT -->
 ## Developer Info
 Name: Harshal Tilay</br>
@@ -78,3 +56,22 @@ This is my hobby project mostly completed in spare time and has been developed o
 This is an offline app so if you uninstall it then you will loose all your existing data.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+
+
+### License
+```
+   Copyright (C) 2023 HARSHAL TILAY
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+```
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
