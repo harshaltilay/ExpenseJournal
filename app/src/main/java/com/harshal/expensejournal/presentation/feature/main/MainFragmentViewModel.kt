@@ -37,6 +37,7 @@ import kotlinx.coroutines.Job
 import java.util.*
 import javax.inject.Inject
 
+
 @HiltViewModel
 class MainFragmentViewModel @Inject constructor(
     private val _addSpendingUseCase: AddSpendingUseCase,
