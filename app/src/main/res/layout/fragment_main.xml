@@ -513,7 +513,7 @@
             android:fontFamily="@font/poppins"
             android:letterSpacing="0"
             android:text="@string/total"
-            android:textColor="@color/orange"
+            android:textColor="#FF5722"
             android:textSize="14sp"
             android:textStyle="bold" />
     </FrameLayout>
