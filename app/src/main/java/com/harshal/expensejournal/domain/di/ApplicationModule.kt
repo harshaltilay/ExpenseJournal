@@ -20,11 +20,14 @@
 package com.harshal.expensejournal.domain.di
 
 import android.content.Context
-import com.harshal.expensejournal.data.cookies.UserProfileAPI
-import com.harshal.expensejournal.data.cookies.UserProfileRepo
+import com.harshal.expensejournal.data.cookies.user.UserProfileAPI
+import com.harshal.expensejournal.data.cookies.user.UserProfileRepo
+import com.harshal.expensejournal.data.cookies.tab.TabSelectionAPI
+import com.harshal.expensejournal.data.cookies.tab.TabSelectionRepo
 import com.harshal.expensejournal.data.spending.SpendingDao
 import com.harshal.expensejournal.data.spending.SpendingRepo
 import com.harshal.expensejournal.framework.android.platform.SharedPreferenceFramework
+import com.harshal.expensejournal.framework.android.platform.TabSelectionFramework
 import com.harshal.expensejournal.framework.roomdb.RoomDBFramework
 import com.harshal.expensejournal.framework.user.UserProfileFramework
 import dagger.Module
@@ -65,4 +68,13 @@ class ApplicationModule {
     @Singleton
     fun provideSharedPreferenceFramework(@ApplicationContext context: Context): SharedPreferenceFramework =
         SharedPreferenceFramework.i(context)
+
+    @Provides
+    @Singleton
+    fun provideTabSelectionAPI(framework: TabSelectionFramework): TabSelectionAPI = framework
+
+    @Provides
+    @Singleton
+    fun provideTabSelectionRepository(dataSource: TabSelectionRepo.TabSelectionRepoImpl): TabSelectionRepo =
+        dataSource
 }

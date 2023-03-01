@@ -20,7 +20,7 @@
 package com.harshal.expensejournal.framework.user
 
 import com.google.gson.Gson
-import com.harshal.expensejournal.data.cookies.UserProfileAPI
+import com.harshal.expensejournal.data.cookies.user.UserProfileAPI
 import com.harshal.expensejournal.domain.user.UserProfileEntity
 import com.harshal.expensejournal.framework.android.platform.SharedPreferenceFramework
 import javax.inject.Inject
@@ -33,12 +33,12 @@ class UserProfileFramework @Inject constructor(private var sharedPreferenceFrame
     override fun setUserInfo(value: UserProfileEntity) {
         val gson = Gson()
         val json = gson.toJson(value)
-        sharedPreferenceFramework.setVal("KEY_USER_PROFILE", json)
+        sharedPreferenceFramework.setStringVal("KEY_USER_PROFILE", json)
     }
 
     override fun getUserInfo(): UserProfileEntity {
         val gson = Gson()
-        val json: String? = sharedPreferenceFramework.getVal("KEY_USER_PROFILE")
+        val json: String? = sharedPreferenceFramework.getStringVal("KEY_USER_PROFILE")
         return gson.fromJson(json, UserProfileEntity::class.java) ?: UserProfileEntity.blankEntity()
     }
 }

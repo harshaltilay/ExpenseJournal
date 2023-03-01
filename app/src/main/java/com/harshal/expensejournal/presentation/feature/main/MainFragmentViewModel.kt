@@ -22,13 +22,16 @@ package com.harshal.expensejournal.presentation.feature.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.harshal.expensejournal.domain.room.*
+import com.harshal.expensejournal.domain.room.DailySumEntity
+import com.harshal.expensejournal.domain.room.MonthlySumEntity
+import com.harshal.expensejournal.domain.room.SpendingEntity
+import com.harshal.expensejournal.domain.room.WeeklySumEntity
 import com.harshal.expensejournal.framework.android.platform.BaseViewModel
-import com.harshal.expensejournal.presentation.feature.main.list.SpendingListFetcher
 import com.harshal.expensejournal.presentation.feature.main.list.ByDaysListFetcher
 import com.harshal.expensejournal.presentation.feature.main.list.ByMonthListFetcher
 import com.harshal.expensejournal.presentation.feature.main.list.ByWeekListFetcher
-import com.harshal.expensejournal.usecases.spending.*
+import com.harshal.expensejournal.presentation.feature.main.list.SpendingListFetcher
+import com.harshal.expensejournal.usecases.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import java.util.*
@@ -37,7 +40,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainFragmentViewModel @Inject constructor(
     private val _addSpendingUseCase: AddSpendingUseCase,
-    private val _fetchDebitsUseCase: FetchDebitsUseCase,
+    private val _spendingUseCase: SpendingUseCase,
     private val _fetchByMonthsUseCase: FetchByMonthsUseCase,
     private val _fetchByWeeksUseCase: FetchByWeeksUseCase,
     private val _spendingHistoryUseCase: SpendingHistoryUseCase,
@@ -97,18 +100,18 @@ class MainFragmentViewModel @Inject constructor(
 
         _byDaysListFetcher?.clear()
         _byDaysListFetcher = ByDaysListFetcher.get(
-            viewModelScope,
-            _daysListJob,
-            _spendingByDayList,
-            _spendingHistoryUseCase,
-            handleFailure
+            viewModelScope, _daysListJob, _spendingByDayList, _spendingHistoryUseCase, handleFailure
         )
         _byDaysListFetcher?.fetch()
 
 
         _spendingListFetcher?.clear()
         _spendingListFetcher = SpendingListFetcher.get(
-            viewModelScope, _dateListJob, _spendingInfoEntityList, _fetchDebitsUseCase, handleFailure
+            viewModelScope,
+            _dateListJob,
+            _spendingInfoEntityList,
+            _spendingUseCase,
+            handleFailure
         )
     }
 

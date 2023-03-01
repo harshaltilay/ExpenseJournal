@@ -5,7 +5,7 @@ import com.harshal.expensejournal.MainActivity
 import com.harshal.expensejournal.domain.BaseUseCase
 import com.harshal.expensejournal.domain.FailureException
 import com.harshal.expensejournal.domain.room.MonthlySumEntity
-import com.harshal.expensejournal.usecases.spending.FetchByMonthsUseCase
+import com.harshal.expensejournal.usecases.FetchByMonthsUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow

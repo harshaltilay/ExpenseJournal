@@ -32,8 +32,8 @@ import com.harshal.expensejournal.domain.invisible
 import com.harshal.expensejournal.domain.user.UserProfileEntity
 import com.harshal.expensejournal.framework.android.platform.ActivityDelegate
 import com.harshal.expensejournal.framework.android.platform.BaseFragment
-import com.harshal.expensejournal.usecases.user.GetUserInfoUseCase
-import com.harshal.expensejournal.usecases.user.SetUserInfoUseCase
+import com.harshal.expensejournal.usecases.GetUserInfoUseCase
+import com.harshal.expensejournal.usecases.SetUserInfoUseCase
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import javax.inject.Inject

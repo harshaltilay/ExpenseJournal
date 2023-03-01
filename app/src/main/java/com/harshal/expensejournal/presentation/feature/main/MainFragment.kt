@@ -44,7 +44,7 @@ import com.harshal.expensejournal.presentation.feature.main.adapters.ByMonthAdap
 import com.harshal.expensejournal.presentation.feature.main.adapters.ByWeekAdapter
 import com.harshal.expensejournal.presentation.feature.main.adapters.SpendingListAdapter
 import com.harshal.expensejournal.presentation.feature.main.dialog.UpdateDetailsDialog
-import com.harshal.expensejournal.usecases.user.GetUserInfoUseCase
+import com.harshal.expensejournal.usecases.GetUserInfoUseCase
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.ZoneId
 import java.time.format.TextStyle

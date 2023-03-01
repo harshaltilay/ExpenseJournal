@@ -18,7 +18,6 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
@@ -40,9 +39,8 @@
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:contentDescription="ic_icon"
-            android:src="@drawable/oval_orange"
-            tools:ignore="HardcodedText" />
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/oval_orange" />
 
         <TextView
             android:id="@+id/target_tv"
@@ -63,20 +61,18 @@
             android:layout_height="28dp"
             android:layout_marginEnd="28dp"
             android:background="@color/white"
-            android:contentDescription="add spending"
+            android:contentDescription="@string/add_spending_desc"
             android:scaleType="fitXY"
             android:src="@drawable/add"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="HardcodedText" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/menu_btn"
             android:layout_width="23dp"
             android:layout_height="23dp"
-            android:contentDescription="menu"
-            android:src="@drawable/fourdots"
-            tools:ignore="HardcodedText" />
+            android:contentDescription="@string/menu_img_desc"
+            android:src="@drawable/fourdots" />
     </LinearLayout>
 
     <LinearLayout
@@ -113,10 +109,9 @@
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:background="@color/white"
-                android:contentDescription="close"
+                android:contentDescription="@string/close_img_desc"
                 android:scaleType="fitXY"
-                android:src="@drawable/close"
-                tools:ignore="HardcodedText" />
+                android:src="@drawable/close" />
         </LinearLayout>
 
         <EditText
@@ -290,11 +285,10 @@
                 android:background="@color/white"
                 android:fontFamily="@font/poppins"
                 android:letterSpacing="0"
-                android:text="Daily Limit: 1,000"
+                android:text="@string/daily_limit"
                 android:textColor="@color/text_dark_blue_1"
                 android:textSize="12sp"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText" />
+                android:textStyle="bold" />
         </LinearLayout>
 
         <TextView
@@ -306,11 +300,10 @@
             android:background="@color/white"
             android:fontFamily="@font/poppins"
             android:letterSpacing="0"
-            android:text="Recent"
+            android:text="@string/recent"
             android:textColor="@color/text_dark_blue_1"
             android:textSize="16sp"
-            android:textStyle="bold"
-            tools:ignore="HardcodedText" />
+            android:textStyle="bold" />
     </FrameLayout>
 
     <LinearLayout
@@ -323,18 +316,17 @@
         android:orientation="horizontal">
 
         <TextView
-            android:lines="1"
             android:id="@+id/day_selected_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".4"
             android:fontFamily="@font/poppinsmedium"
             android:lineSpacingExtra="27sp"
-            android:text="Transactions Details"
+            android:lines="1"
+            android:text="@string/transactions_details"
             android:textColor="@color/button_bg_blue"
             android:textSize="16sp"
-            android:textStyle="bold"
-            tools:ignore="HardcodedText" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/opinion_tv"
@@ -345,8 +337,7 @@
             android:lineSpacingExtra="27sp"
             android:textColor="@color/button_bg_blue"
             android:textSize="14sp"
-            android:textStyle="bold"
-            tools:ignore="HardcodedText" />
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -364,8 +355,8 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="9dp"
-        app:cardElevation="4dp"
+        app:cardCornerRadius="1dp"
+        app:cardElevation="1dp"
         app:cardUseCompatPadding="true">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -414,11 +405,10 @@
                 android:background="@color/white"
                 android:fontFamily="@font/poppins"
                 android:letterSpacing="0"
-                android:text="Weekly Limit: 1,000"
+                android:text="@string/weekly_limit"
                 android:textColor="@color/text_dark_blue_1"
                 android:textSize="12sp"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText" />
+                android:textStyle="bold" />
         </LinearLayout>
 
         <TextView
@@ -431,11 +421,10 @@
             android:background="@color/white"
             android:fontFamily="@font/poppins"
             android:letterSpacing="0"
-            android:text="Month: 2023"
+            android:text="@string/month"
             android:textColor="@color/black"
             android:textSize="16sp"
-            android:textStyle="bold"
-            tools:ignore="HardcodedText" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/present_month_total_tv"
@@ -447,11 +436,10 @@
             android:background="@color/white"
             android:fontFamily="@font/poppins"
             android:letterSpacing="0"
-            android:text="Total: 1,70,420"
+            android:text="@string/total"
             android:textColor="@color/red"
             android:textSize="14sp"
-            android:textStyle="bold"
-            tools:ignore="HardcodedText" />
+            android:textStyle="bold" />
     </FrameLayout>
 
     <FrameLayout
@@ -493,11 +481,10 @@
                 android:background="@color/white"
                 android:fontFamily="@font/poppins"
                 android:letterSpacing="0"
-                android:text="Monthly Limit: 1,000"
+                android:text="@string/monthly_limit"
                 android:textColor="@color/text_dark_blue_1"
                 android:textSize="12sp"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText" />
+                android:textStyle="bold" />
         </LinearLayout>
 
         <TextView
@@ -510,11 +497,10 @@
             android:background="@color/white"
             android:fontFamily="@font/poppins"
             android:letterSpacing="0"
-            android:text="Year: 2023"
+            android:text="@string/year"
             android:textColor="@color/black"
             android:textSize="16sp"
-            android:textStyle="bold"
-            tools:ignore="HardcodedText" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/present_year_total_tv"
@@ -526,11 +512,10 @@
             android:background="@color/white"
             android:fontFamily="@font/poppins"
             android:letterSpacing="0"
-            android:text="Total: 1,70,420"
+            android:text="@string/total"
             android:textColor="@color/orange"
             android:textSize="14sp"
-            android:textStyle="bold"
-            tools:ignore="HardcodedText" />
+            android:textStyle="bold" />
     </FrameLayout>
 
     <FrameLayout
@@ -581,11 +566,9 @@
             android:letterSpacing="0"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
-            android:text="Daily summary"
             android:textColor="@color/text_dark_blue_1"
             android:textSize="13sp"
-            android:textStyle="bold"
-            tools:ignore="HardcodedText" />
+            android:textStyle="bold" />
     </FrameLayout>
 
 </LinearLayout>

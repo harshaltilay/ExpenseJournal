@@ -5,7 +5,7 @@ import com.harshal.expensejournal.MainActivity
 import com.harshal.expensejournal.domain.BaseUseCase
 import com.harshal.expensejournal.domain.FailureException
 import com.harshal.expensejournal.domain.room.DailySumEntity
-import com.harshal.expensejournal.usecases.spending.SpendingHistoryUseCase
+import com.harshal.expensejournal.usecases.SpendingHistoryUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow

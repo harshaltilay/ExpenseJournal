@@ -56,15 +56,27 @@ class SharedPreferenceFramework {
 //        cookiesPrivate.edit().clear().apply()
 //    }
 
-    fun getVal(key: String): String? {
+    fun getStringVal(key: String): String? {
         return cookiesPrivate.getString(key, null)
     }
 
-    fun setVal(key: String, value: String) {
+    fun setStringVal(key: String, value: String) {
         cookieEditor = cookiesPrivate.edit()
         cookieEditor?.putString(
             key, value
         )
         cookieEditor?.apply()
+    }
+
+    fun setIntVal(key: String, value: Int) {
+        cookieEditor = cookiesPrivate.edit()
+        cookieEditor?.putInt(
+            key, value
+        )
+        cookieEditor?.apply()
+    }
+
+    fun getIntVal(key: String): Int {
+        return cookiesPrivate.getInt(key, 0)
     }
 }
