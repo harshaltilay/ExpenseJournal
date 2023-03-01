@@ -47,9 +47,6 @@ class MainFragmentViewModel @Inject constructor(
     private val _updateSpendingUseCase: UpdateSpendingUseCase
 ) : BaseViewModel() {
 
-//    var userProfileEntity: UserProfileEntity? = null
-//        private set
-
     private val _spendingByMonthList: MutableLiveData<List<MonthlySumEntity>> = MutableLiveData()
     val spendingByMonthList: LiveData<List<MonthlySumEntity>> = _spendingByMonthList
     private var _monthListJob: Job? = null
