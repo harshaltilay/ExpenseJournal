@@ -5,7 +5,7 @@
  A lightweight minimalistic spending tracker to helps us keep monitoring our expenses.
  </p>
   
- No time to have a look at project ?
+ No time to have a look at project source code ?
 <a href="https://github.com/harshaltilay/ExpenseJournal/raw/master/ExpenseJournal.apk">
     Just download the apk to see it in action
 </a>
@@ -15,7 +15,7 @@
 </a>
 
 
-#### We are using...
+## We are using...
 
 1) Kotlin
 2) Generics
