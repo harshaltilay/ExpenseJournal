@@ -84,11 +84,11 @@ class SpendingListAdapter
         override fun getNewListSize() = newList.size
 
         override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-            return oldList[oldItemPosition].sid == newList[newItemPosition].sid && oldList[oldItemPosition].touser == newList[newItemPosition].touser
+            return oldList[oldItemPosition] == newList[newItemPosition]
         }
 
         override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-            return oldList[oldItemPosition] == newList[newItemPosition]
+            return oldList[oldItemPosition].sid == newList[newItemPosition].sid && oldList[oldItemPosition].touser == newList[newItemPosition].touser
         }
     }
 

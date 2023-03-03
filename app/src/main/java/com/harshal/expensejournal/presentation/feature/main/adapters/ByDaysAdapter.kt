@@ -104,10 +104,12 @@ class ByDaysAdapter
 
         override fun getNewListSize() = newList.size
 
+        //Verify if Item position changed due to add remove etc...
         override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
             return oldList[oldItemPosition] == newList[newItemPosition]
         }
 
+        //Verify if Item updated
         override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
             return oldList[oldItemPosition].time == newList[newItemPosition].time
         }
