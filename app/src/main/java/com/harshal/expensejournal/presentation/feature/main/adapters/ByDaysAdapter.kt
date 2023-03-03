@@ -34,11 +34,11 @@ import kotlin.properties.Delegates
 
 @SuppressLint("NotifyDataSetChanged")
 @Singleton
-class ByDayAdapter
+class ByDaysAdapter
 @Inject constructor(
     var setSelectedTabUseCase: SetSelectedTabUseCase,
     var getSelectedTabUseCase: GetSelectedTabUseCase
-) : RecyclerView.Adapter<ByDayAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<ByDaysAdapter.ViewHolder>() {
 
     private var selectedPosition = 0
 
@@ -105,11 +105,11 @@ class ByDayAdapter
         override fun getNewListSize() = newList.size
 
         override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-            return oldList[oldItemPosition].amount == newList[newItemPosition].amount && oldList[oldItemPosition].time == newList[newItemPosition].time
+            return oldList[oldItemPosition] == newList[newItemPosition]
         }
 
         override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-            return oldList[oldItemPosition] == newList[newItemPosition]
+            return oldList[oldItemPosition].time == newList[newItemPosition].time
         }
     }
 }

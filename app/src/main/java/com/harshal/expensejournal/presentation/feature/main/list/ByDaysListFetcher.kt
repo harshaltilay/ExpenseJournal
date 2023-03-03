@@ -5,7 +5,7 @@ import com.harshal.expensejournal.MainActivity
 import com.harshal.expensejournal.domain.BaseUseCase
 import com.harshal.expensejournal.domain.FailureException
 import com.harshal.expensejournal.domain.room.DailySumEntity
-import com.harshal.expensejournal.usecases.SpendingHistoryUseCase
+import com.harshal.expensejournal.usecases.FetchByDaysUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
@@ -17,7 +17,7 @@ class ByDaysListFetcher(
     private val _viewModelScope: CoroutineScope,
     private var _job: Job?,
     private val _spendingHistoryList: MutableLiveData<List<DailySumEntity>>,
-    private val _spendingHistoryUseCase: SpendingHistoryUseCase,
+    private val _fetchByDaysUseCase: FetchByDaysUseCase,
     private val _handleFailure: (FailureException) -> Unit
 ) : Clearable {
 
@@ -28,12 +28,12 @@ class ByDaysListFetcher(
             viewModelScope: CoroutineScope,
             job: Job?,
             spendingHistoryList: MutableLiveData<List<DailySumEntity>>,
-            spendingHistoryUseCase: SpendingHistoryUseCase,
+            fetchByDaysUseCase: FetchByDaysUseCase,
             handle_failure: (FailureException) -> Unit
         ): ByDaysListFetcher {
             return INSTANCE ?: synchronized(this) {
                 val instance = ByDaysListFetcher(
-                    viewModelScope, job, spendingHistoryList, spendingHistoryUseCase, handle_failure
+                    viewModelScope, job, spendingHistoryList, fetchByDaysUseCase, handle_failure
                 )
                 INSTANCE = instance
                 // return instance
@@ -43,7 +43,7 @@ class ByDaysListFetcher(
     }
 
     fun fetch() {
-        _spendingHistoryUseCase(BaseUseCase.None()) { either ->
+        _fetchByDaysUseCase(BaseUseCase.None()) { either ->
             either.fold(_handleFailure, ::handleList)
         }
     }

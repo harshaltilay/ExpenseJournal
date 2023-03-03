@@ -12,7 +12,7 @@ import java.util.*
 import javax.inject.Inject
 
 interface SpendingRepo {
-    fun fetchSpending(params: Date): Either<FailureException, Flow<List<SpendingEntity>>>
+    fun fetchSpendingOnDate(params: Date): Either<FailureException, Flow<List<SpendingEntity>>>
     fun spendingByDays(params: None): Either<FailureException, Flow<List<DailySumEntity>>>
     fun spendingByWeeks(params: None): Either<FailureException, Flow<List<WeeklySumEntity>>>
     fun spendingByMonths(params: None): Either<FailureException, Flow<List<MonthlySumEntity>>>
@@ -24,11 +24,11 @@ interface SpendingRepo {
         private val _spendingDao: SpendingDao
     ) : SpendingRepo {
 
-        override fun fetchSpending(params: Date): Either<FailureException, Flow<List<SpendingEntity>>> {
+        override fun fetchSpendingOnDate(params: Date): Either<FailureException, Flow<List<SpendingEntity>>> {
             //  _spendingDao.deleteTodayDetails(Calendar.getInstance().time.time)
             return try {
                 Either.Right(
-                    _spendingDao.fetchSpending(params.time)
+                    _spendingDao.fetchSpendingOnDate(params.time)
                 )
             } catch (e: Exception) {
                 Either.Left(FailureException.DaoError)

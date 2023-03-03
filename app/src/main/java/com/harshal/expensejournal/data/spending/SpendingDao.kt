@@ -21,7 +21,7 @@ interface SpendingDao {
     fun updateSpending(desc: String, category: Int, sid: Int)
 
     @Query("SELECT * FROM spending WHERE strftime('%d%m%Y',date(time/1000, 'unixepoch', 'localtime')) = strftime('%d%m%Y',date(:today/1000, 'unixepoch', 'localtime')) ORDER BY time DESC")
-    fun fetchSpending(today: Long): Flow<List<SpendingEntity>>
+    fun fetchSpendingOnDate(today: Long): Flow<List<SpendingEntity>>
 
     @Query("SELECT time AS time, SUM(amount) as amount, '0' as maxlimit  FROM spending WHERE strftime('%m%Y',date(time/1000, 'unixepoch', 'localtime')) = strftime('%m%Y',date(:month/1000, 'unixepoch', 'localtime'))  GROUP BY  strftime('%W',date(time/1000, 'unixepoch', 'localtime')) ORDER BY time DESC")
     fun weeklySpending(month: Long): Flow<List<WeeklySumEntity>>

@@ -23,7 +23,7 @@ package com.harshal.expensejournal.presentation.feature.main.list
 import androidx.lifecycle.MutableLiveData
 import com.harshal.expensejournal.domain.FailureException
 import com.harshal.expensejournal.domain.room.SpendingEntity
-import com.harshal.expensejournal.usecases.SpendingUseCase
+import com.harshal.expensejournal.usecases.FetchSpendingOnDateUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
@@ -36,7 +36,7 @@ class SpendingListFetcher(
     private val _viewModelScope: CoroutineScope,
     private var _job: Job?,
     private val _spendList: MutableLiveData<List<SpendingEntity>>,
-    private val _spendingUseCase: SpendingUseCase,
+    private val _Fetch_spendingUseCase: FetchSpendingOnDateUseCase,
     private val _handleFailure: (FailureException) -> Unit
 ) : Clearable {
 
@@ -47,12 +47,12 @@ class SpendingListFetcher(
             viewModelScope: CoroutineScope,
             job: Job?,
             spendList: MutableLiveData<List<SpendingEntity>>,
-            spendingUseCase: SpendingUseCase,
+            fetchSpendingOnDateUseCase: FetchSpendingOnDateUseCase,
             handle_failure: (FailureException) -> Unit
         ): SpendingListFetcher {
             return INSTANCE ?: synchronized(this) {
                 val instance = SpendingListFetcher(
-                    viewModelScope, job, spendList, spendingUseCase, handle_failure
+                    viewModelScope, job, spendList, fetchSpendingOnDateUseCase, handle_failure
                 )
                 INSTANCE = instance
                 // return instance
@@ -63,7 +63,7 @@ class SpendingListFetcher(
 
 
     fun fetch(date: Date) {
-        _spendingUseCase(date, _viewModelScope) {
+        _Fetch_spendingUseCase(date, _viewModelScope) {
             it.fold(
                 _handleFailure, ::handleList
             )

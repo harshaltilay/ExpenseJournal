@@ -39,7 +39,7 @@ import com.harshal.expensejournal.domain.room.SpendingEntity
 import com.harshal.expensejournal.domain.user.Quotes
 import com.harshal.expensejournal.framework.android.platform.ActivityDelegate
 import com.harshal.expensejournal.framework.android.platform.BaseFragment
-import com.harshal.expensejournal.presentation.feature.main.adapters.ByDayAdapter
+import com.harshal.expensejournal.presentation.feature.main.adapters.ByDaysAdapter
 import com.harshal.expensejournal.presentation.feature.main.adapters.ByMonthAdapter
 import com.harshal.expensejournal.presentation.feature.main.adapters.ByWeekAdapter
 import com.harshal.expensejournal.presentation.feature.main.adapters.SpendingListAdapter
@@ -64,7 +64,7 @@ class MainFragment : BaseFragment() {
     lateinit var weekHistoryAdapter: ByWeekAdapter
 
     @Inject
-    lateinit var daysHistoryAdapter: ByDayAdapter
+    lateinit var daysHistoryAdapter: ByDaysAdapter
 
     @Inject
     lateinit var SpendingListAdapter: SpendingListAdapter

@@ -29,15 +29,6 @@ import kotlinx.coroutines.flow.Flow
 import java.util.*
 import javax.inject.Inject
 
-class AddSpendingUseCase
-@Inject constructor(private val _spendingRepo: SpendingRepo) :
-    BaseUseCase<BaseUseCase.None, SpendingEntity>() {
-
-    override suspend fun run(params: SpendingEntity): Either<FailureException, None> =
-        _spendingRepo.addSpending(params)
-
-}
-
 class FetchByMonthsUseCase
 @Inject constructor(private val _spendingRepo: SpendingRepo) :
     BaseUseCase<Flow<List<MonthlySumEntity>>, BaseUseCase.None>() {
@@ -56,17 +47,7 @@ class FetchByWeeksUseCase
 
 }
 
-
-class SpendingUseCase
-@Inject constructor(private val _spendingRepo: SpendingRepo) :
-    BaseUseCase<Flow<List<SpendingEntity>>, Date>() {
-
-    override suspend fun run(params: Date): Either<FailureException, Flow<List<SpendingEntity>>> =
-        _spendingRepo.fetchSpending(params)
-
-}
-
-class SpendingHistoryUseCase
+class FetchByDaysUseCase
 @Inject constructor(private val _spendingRepo: SpendingRepo) :
     BaseUseCase<Flow<List<DailySumEntity>>, BaseUseCase.None>() {
 
@@ -75,6 +56,25 @@ class SpendingHistoryUseCase
 
 }
 
+class FetchSpendingOnDateUseCase
+@Inject constructor(private val _spendingRepo: SpendingRepo) :
+    BaseUseCase<Flow<List<SpendingEntity>>, Date>() {
+
+    override suspend fun run(params: Date): Either<FailureException, Flow<List<SpendingEntity>>> =
+        _spendingRepo.fetchSpendingOnDate(params)
+
+}
+
+
+
+class AddSpendingUseCase
+@Inject constructor(private val _spendingRepo: SpendingRepo) :
+    BaseUseCase<BaseUseCase.None, SpendingEntity>() {
+
+    override suspend fun run(params: SpendingEntity): Either<FailureException, None> =
+        _spendingRepo.addSpending(params)
+
+}
 
 class UpdateSpendingUseCase
 @Inject constructor(private val _spendingRepo: SpendingRepo) :
