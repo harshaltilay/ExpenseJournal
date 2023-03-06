@@ -23,13 +23,13 @@
     <string name="rrr">₹</string>
 
     <string name="string_limit_monthly">
-      Monthly Limit :   &lt;b>%2s&lt;/b>
+      Monthly Limit :    &lt;font color="#426DDC">&lt;b>%2s&lt;/b>&lt;/font>
     </string>
     <string name="string_limit_weekly">
-      Weekly Limit :   &lt;b>%2s&lt;/b>
+      Weekly Limit :     &lt;font color="#426DDC">&lt;b>%2s&lt;/b>&lt;/font>
     </string>
     <string name="string_limit_daily">
-      Daily Limit :   &lt;b>%2s&lt;/b>
+      Daily Limit :     &lt;font color="#426DDC">&lt;b>%2s&lt;/b>&lt;/font>
     </string>
     <string name="string_welcome_user">
       Hello &lt;b>%1s&lt;/b>

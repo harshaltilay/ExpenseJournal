@@ -61,14 +61,13 @@ class ByDaysAdapter
 
     override fun getItemCount() = collection.size
 
-    private fun selectItem(position: Int = -1) {
-        if (selectedPosition < collection.size) notifyItemChanged(selectedPosition)
+    private fun selectItem() {
+        notifyItemChanged(selectedPosition)
 
         if (collection.isNotEmpty()) {
-            val oldPos = getSelectedTabUseCase().run {
+            selectedPosition = getSelectedTabUseCase().run {
                 if (this@run >= collection.size) 0 else this@run
             }
-            selectedPosition = if (position == -1) oldPos else position
             clickListener.onItemClick(collection[selectedPosition])
         }
 
@@ -89,7 +88,7 @@ class ByDaysAdapter
             binding.rowData = collection[position]
             binding.root.setOnClickListener {
                 setSelectedTabUseCase(position)
-                selectItem(position)
+                selectItem()
             }
             if (selectedPosition == position) binding.root.setBackgroundResource(R.drawable.rect_border_gray)
             else binding.root.setBackgroundResource(R.color.white)
