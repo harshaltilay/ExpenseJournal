@@ -67,7 +67,7 @@ class MainFragment : BaseFragment() {
     lateinit var daysHistoryAdapter: ByDaysAdapter
 
     @Inject
-    lateinit var SpendingListAdapter: SpendingListAdapter
+    lateinit var spendingListAdapter: SpendingListAdapter
 
     private var _binding: FragmentMainBinding? = null
     val binding get() = _binding!!
@@ -215,7 +215,7 @@ class MainFragment : BaseFragment() {
 
         binding.spendingListRecyclerView.layoutManager =
             BugFreeLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        SpendingListAdapter.clickListener = object : ClickListener<SpendingEntity> {
+        spendingListAdapter.clickListener = object : ClickListener<SpendingEntity> {
             override fun onItemClick(entity: SpendingEntity) {
                 val updateDialog = UpdateDetailsDialog(
                     requireContext(), requireActivity(), entity
@@ -229,7 +229,7 @@ class MainFragment : BaseFragment() {
                 updateDialog.show()
             }
         }
-        binding.spendingListRecyclerView.adapter = SpendingListAdapter
+        binding.spendingListRecyclerView.adapter = spendingListAdapter
     }
 
     override fun setUpObservers() {
@@ -248,7 +248,7 @@ class MainFragment : BaseFragment() {
             }
 
             observe(spendingInfoEntityList) {
-                SpendingListAdapter.collection = it ?: emptyList()
+                spendingListAdapter.collection = it ?: emptyList()
                 updateDayOpinion()
             }
 
