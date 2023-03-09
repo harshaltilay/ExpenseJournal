@@ -105,7 +105,7 @@ class ByDaysAdapter
 
         //Verify if Item position changed due to add remove etc...
         override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-            return oldList[oldItemPosition] == newList[newItemPosition]
+            return oldList[oldItemPosition] === newList[newItemPosition]
         }
 
         //Verify if Item updated
