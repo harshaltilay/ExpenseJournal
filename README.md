@@ -1,63 +1,58 @@
-## Expense Journal
-[![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
 <a name="readme-top"></a>
- <p align="left">
- A lightweight minimalistic spending tracker to helps us keep monitoring our expenses.
- </p>
-  
- No time to have a look at project source code ?
-<a href="https://github.com/harshaltilay/ExpenseJournal/raw/master/ExpenseJournal.apk">
-    Just download the apk to see it in action
-</a>
+# Expense Journal
+[![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
 
+Expense Journal helps us to keep an eye on our expenses on daily, monthly, weekly basis. It supports following features...
+
+* Choose your home currency symbol, Username and set the max spending limit for the Day, Week, Month
+* Instant review of spending in last 30 days.
+* Instant review of spending in each week for the month.
+* Instant review of spending in each month for the present year.
+* Complete review of spending for particular day.
+* Categorize spending as Essential, Casual or Anxiety.
+* Completely secure, your data never leaves your device.
+* Exceeded targets displayed in red color.
+* Made with ❤️ to expose my coding style and CLEAN architecture pattern with local room database App.
+
+
+## Built using
+1) Kotlin
+2) Generics
+3) HILT2
+4) Flow
+5) RoomDB
+6) Navigation Component
+
+
+## App Architecture
+The code is divided in to five layers of CLEAN Architecture Pattern.
+
+<b>1. Presentation.</b><br>
+<b>2. Use cases.</b><br>
+<b>3. Domain.</b><br>
+<b>4. Data.</b><br>
+<b>5. Framework.</b><br>
+Where Data flow is like this (Fragments/Activities/Presentation) -> UseCases -> Domain -> Data -> Framework
+
+## Screenshot
 <a href="https://github.com/harshaltilay/ExpenseJournal">
     <img src="screenshot1.png" alt="Logo" width="320" height="660">
 </a>
 
-
-## We are using...
-
-1) Kotlin
-2) Generics
-3) HILT2
-4) Flow basics
-5) RoomDB
-6) Navigation Component
-7) Android Studio IDE
-8) CLEAN Architecture
-
-App consist of two screens. Profile screen where user set his name and mention daily, weekly and monthly max spending targets. Main screen that constantly shows user his daily, weekly, monthly spending details and whether the limits set is exceeded or not.
-
-The code is divided in to five layers of CLEAN Architecture Pattern. 
-
-<b>1. Presentation.</b><br> 
-<b>2. Use cases.</b><br> 
-<b>3. Domain.</b><br> 
-<b>4. Data.</b><br> 
-<b>5. Framework.</b><br>
-
-This is very useful for conducting tests as well as code management when the project is really huge.
+## Apk download
+<a href="https://github.com/harshaltilay/ExpenseJournal/raw/master/ExpenseJournal.apk">
+Download the apk to see it in action
+</a>
 
 <!-- CONTACT -->
 ## Developer Info
 Name: Harshal Tilay</br>
-Country: India (GMT+5.30)</br></br>
-Android Studio | VS Code | Unity | Sublimetext</br>
-Kotlin | Java | C# | C++ JNI (Working knowledge)</br>
-HTML | JavaScript | PHP <br>
-NoSQL| MySQL | SQLite | Google App Engine | Firebase/FireStore</br>
-REST | JSON | GraphQL | XML</br>
-SmartFox Server | Photon Cloud/Server | Custom Socket Servers | Amazon Image Rekognition API</br>
-Git | Jira</br>
-Windows | MacOS</br>
-
+Country: India (GMT+5.30)</br>
 
 ## Disclaimer
-This is my hobby project mostly completed in spare time and has been developed on Emulator only. If you face any issue please let me know further. 
+This is my hobby project mostly completed in spare time and has been developed on Emulator only. If you face any issue please let me know further.
 This is an offline app so if you uninstall it then you will loose all your existing data.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 ### License
 ```
