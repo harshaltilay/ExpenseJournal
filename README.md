@@ -5,13 +5,13 @@
 Expense Journal helps us to keep an eye on our expenses on daily, monthly, weekly basis. It supports following features...
 
 * Choose your home currency symbol, Username and set the max spending limit for the Day, Week, Month
-* Instant review of spending in last 30 days.
-* Instant review of spending in each week for the month.
-* Instant review of spending in each month for the present year.
+* Quick review of spending in last 30 days.
+* Quick review of spending in each week for the month.
+* Quick review of spending in each month for the present year.
 * Complete review of spending for particular day.
 * Categorize spending as Essential, Casual or Anxiety.
 * Completely secure, your data never leaves your device.
-* Exceeded targets displayed in red color.
+* Exceeded limit amount displayed in red color.
 * Made with ❤️ to expose my coding style and CLEAN architecture pattern with local room database App.
 
 
