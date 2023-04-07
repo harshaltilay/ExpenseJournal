@@ -35,10 +35,10 @@
       Hello &lt;b>%1s&lt;/b>
     </string>
     <string name="string_total_year">
-      Year Total: &lt;b>%1s&lt;/b>
+      &lt;b>%1s&lt;/b>: &lt;b>%2s&lt;/b>
     </string>
     <string name="string_total_month">
-      Month Total: &lt;b>%1s&lt;/b>
+       &lt;b>%1s&lt;/b>: &lt;b>%2s&lt;/b>
     </string>
 
     <string name="string_opinion_overspent">

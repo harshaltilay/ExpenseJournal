@@ -4,8 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import com.harshal.expensejournal.MainActivity
 import com.harshal.expensejournal.domain.BaseUseCase
 import com.harshal.expensejournal.domain.FailureException
-import com.harshal.expensejournal.domain.room.WeeklySumEntity
-import com.harshal.expensejournal.usecases.FetchByWeeksUseCase
+import com.harshal.expensejournal.domain.room.MonthlySumEntity
+import com.harshal.expensejournal.usecases.FetchByMonthsUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
@@ -13,34 +13,34 @@ import kotlinx.coroutines.flow.cancellable
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class ByWeekListFetcher(
+class ByMonth(
     private val _viewModelScope: CoroutineScope,
     private var _job: Job?,
-    private val _spendList: MutableLiveData<List<WeeklySumEntity>>,
-    private val _fetchByWeeksUseCase: FetchByWeeksUseCase,
+    private val _monthList: MutableLiveData<List<MonthlySumEntity>>,
+    private val _fetchByMonthsUseCase: FetchByMonthsUseCase,
     private val _handleFailure: (FailureException) -> Unit,
-    private var _totalMonthly: MutableLiveData<Float>
+    private var _totalYearly: MutableLiveData<Float>
 ) : Clearable {
 
     companion object {
         @Volatile
-        private var INSTANCE: ByWeekListFetcher? = null
+        private var INSTANCE: ByMonth? = null
         fun get(
             viewModelScope: CoroutineScope,
             job: Job?,
-            spendList: MutableLiveData<List<WeeklySumEntity>>,
-            fetchByWeeksUseCase: FetchByWeeksUseCase,
+            _spendList: MutableLiveData<List<MonthlySumEntity>>,
+            fetchByMonthsUseCase: FetchByMonthsUseCase,
             handle_failure: (FailureException) -> Unit,
-            totalMonthly: MutableLiveData<Float>
-        ): ByWeekListFetcher {
+            totalYearly: MutableLiveData<Float>
+        ): ByMonth {
             return INSTANCE ?: synchronized(this) {
-                val instance = ByWeekListFetcher(
+                val instance = ByMonth(
                     viewModelScope,
                     job,
-                    spendList,
-                    fetchByWeeksUseCase,
+                    _spendList,
+                    fetchByMonthsUseCase,
                     handle_failure,
-                    totalMonthly
+                    totalYearly
                 )
                 INSTANCE = instance
                 // return instance
@@ -51,34 +51,33 @@ class ByWeekListFetcher(
 
 
     fun fetch() {
-        _fetchByWeeksUseCase(BaseUseCase.None(), _viewModelScope) {
+        _fetchByMonthsUseCase(BaseUseCase.None(), _viewModelScope) {
             it.fold(
                 _handleFailure, ::handleList
             )
         }
     }
 
-    private fun handleList(list: Flow<List<WeeklySumEntity>>) {
+    private fun handleList(list: Flow<List<MonthlySumEntity>>) {
         _job = _viewModelScope.launch {
-            list.cancellable().collectLatest { WeeklyDebitEntity ->
-                val newList = arrayListOf<WeeklySumEntity>()
+            list.cancellable().collectLatest { monthlyDebitEntity ->
+                val newList = arrayListOf<MonthlySumEntity>()
                 var totalCount = 0f
-                WeeklyDebitEntity.forEach {
-                    it.maxlimit = MainActivity.curUser!!.weeklyMax
+                monthlyDebitEntity.forEach {
+                    it.maxlimit = MainActivity.curUser!!.monthlyMax
                     newList.add(it)
                     totalCount += it.amount
                 }
-                _spendList.postValue(newList.toList())
-                _totalMonthly.postValue(totalCount)
+                _monthList.postValue(newList.toList())
+                _totalYearly.postValue(totalCount)
             }
         }
     }
 
     override fun clear() {
         _job?.cancel()
-        _spendList.postValue(listOf())
+        _monthList.postValue(listOf())
         _job = null
         INSTANCE = null
     }
-
 }

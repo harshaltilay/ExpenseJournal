@@ -127,13 +127,6 @@ class MainFragment : BaseFragment() {
                 binding.dailyLimitTv.text = String.html(
                     getString(R.string.string_limit_daily, String.inCurrency(dailyMax))
                 )
-                val currentDate =
-                    Calendar.getInstance().time.toInstant().atZone(ZoneId.systemDefault())
-                        .toLocalDateTime()
-                val month = currentDate.month.getDisplayName(TextStyle.FULL, Locale.ENGLISH)
-                val year = currentDate.year.toString().uppercase()
-                binding.presentMonthTv.text = month
-                binding.presentYearTv.text = year
             }
             Quotes.getNormalQuote().apply {
                 binding.quoteTv.text = this
@@ -188,13 +181,13 @@ class MainFragment : BaseFragment() {
     override fun setupViewAdapters() {
 
         binding.monthsRv.layoutManager =
-            BugFreeLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+            BugFreeLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         binding.daysRv.setHasFixedSize(true)
         binding.daysRv.isNestedScrollingEnabled = false
         binding.monthsRv.adapter = monthHistoryAdapter
 
         binding.weeksRv.layoutManager =
-            BugFreeLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+            BugFreeLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         binding.daysRv.setHasFixedSize(true)
         binding.daysRv.isNestedScrollingEnabled = false
         binding.weeksRv.adapter = weekHistoryAdapter
@@ -253,16 +246,23 @@ class MainFragment : BaseFragment() {
             }
 
             observe(totalYearly) {
+                val currentDate =
+                    Calendar.getInstance().time.toInstant().atZone(ZoneId.systemDefault())
+                        .toLocalDateTime()
+                val year = currentDate.year.toString().uppercase()
                 binding.presentYearTotalTv.text = String.html(
-                    getString(R.string.string_total_year, String.inCurrency(it ?: 0f))
+                    getString(R.string.string_total_year, year,String.inCurrency(it ?: 0f))
                 )
             }
 
             observe(totalMonthly) {
                 if (it == null) return@observe
-
+                val currentDate =
+                    Calendar.getInstance().time.toInstant().atZone(ZoneId.systemDefault())
+                        .toLocalDateTime()
+                val month = currentDate.month.getDisplayName(TextStyle.FULL, Locale.ENGLISH)
                 binding.presentMonthTotalTv.text = String.html(
-                    getString(R.string.string_total_month, String.inCurrency(it))
+                    getString(R.string.string_total_month, month, String.inCurrency(it))
                 )
 
                 binding.presentMonthTotalTv.setTextColor(

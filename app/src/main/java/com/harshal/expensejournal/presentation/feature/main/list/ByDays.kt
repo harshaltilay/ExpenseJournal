@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.cancellable
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class ByDaysListFetcher(
+class ByDays(
     private val _viewModelScope: CoroutineScope,
     private var _job: Job?,
     private val _spendingHistoryList: MutableLiveData<List<DailySumEntity>>,
@@ -23,16 +23,16 @@ class ByDaysListFetcher(
 
     companion object {
         @Volatile
-        private var INSTANCE: ByDaysListFetcher? = null
+        private var INSTANCE: ByDays? = null
         fun get(
             viewModelScope: CoroutineScope,
             job: Job?,
             spendingHistoryList: MutableLiveData<List<DailySumEntity>>,
             fetchByDaysUseCase: FetchByDaysUseCase,
             handle_failure: (FailureException) -> Unit
-        ): ByDaysListFetcher {
+        ): ByDays {
             return INSTANCE ?: synchronized(this) {
-                val instance = ByDaysListFetcher(
+                val instance = ByDays(
                     viewModelScope, job, spendingHistoryList, fetchByDaysUseCase, handle_failure
                 )
                 INSTANCE = instance

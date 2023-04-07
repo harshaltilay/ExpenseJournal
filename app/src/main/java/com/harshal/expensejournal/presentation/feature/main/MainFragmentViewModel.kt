@@ -27,9 +27,9 @@ import com.harshal.expensejournal.domain.room.MonthlySumEntity
 import com.harshal.expensejournal.domain.room.SpendingEntity
 import com.harshal.expensejournal.domain.room.WeeklySumEntity
 import com.harshal.expensejournal.framework.android.platform.BaseViewModel
-import com.harshal.expensejournal.presentation.feature.main.list.ByDaysListFetcher
-import com.harshal.expensejournal.presentation.feature.main.list.ByMonthListFetcher
-import com.harshal.expensejournal.presentation.feature.main.list.ByWeekListFetcher
+import com.harshal.expensejournal.presentation.feature.main.list.ByDays
+import com.harshal.expensejournal.presentation.feature.main.list.ByMonth
+import com.harshal.expensejournal.presentation.feature.main.list.ByWeek
 import com.harshal.expensejournal.presentation.feature.main.list.SpendingListFetcher
 import com.harshal.expensejournal.usecases.*
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -51,21 +51,21 @@ class MainFragmentViewModel @Inject constructor(
     private val _spendingByMonthList: MutableLiveData<List<MonthlySumEntity>> = MutableLiveData()
     val spendingByMonthList: LiveData<List<MonthlySumEntity>> = _spendingByMonthList
     private var _monthListJob: Job? = null
-    private var _byMonthListFetcher: ByMonthListFetcher? = null
+    private var _byMonth: ByMonth? = null
     private val _totalYearly: MutableLiveData<Float> = MutableLiveData()
     val totalYearly: MutableLiveData<Float> = _totalYearly
 
     private val _spendingByWeekList: MutableLiveData<List<WeeklySumEntity>> = MutableLiveData()
     val spendingByWeekList: LiveData<List<WeeklySumEntity>> = _spendingByWeekList
     private var _weekListJob: Job? = null
-    private var _byWeekListFetcher: ByWeekListFetcher? = null
+    private var _byWeek: ByWeek? = null
     private val _totalMonthly: MutableLiveData<Float> = MutableLiveData()
     val totalMonthly: MutableLiveData<Float> = _totalMonthly
 
     private val _spendingByDayList: MutableLiveData<List<DailySumEntity>> = MutableLiveData()
     val spendingByDayList: LiveData<List<DailySumEntity>> = _spendingByDayList
     private var _daysListJob: Job? = null
-    private var _byDaysListFetcher: ByDaysListFetcher? = null
+    private var _byDays: ByDays? = null
 
     private val _spendingInfoEntityList: MutableLiveData<List<SpendingEntity>> = MutableLiveData()
     val spendingInfoEntityList: LiveData<List<SpendingEntity>> = _spendingInfoEntityList
@@ -74,8 +74,8 @@ class MainFragmentViewModel @Inject constructor(
     private var _spendingListFetcher: SpendingListFetcher? = null
 
     fun beginFlow() {
-        _byMonthListFetcher?.clear()
-        _byMonthListFetcher = ByMonthListFetcher.get(
+        _byMonth?.clear()
+        _byMonth = ByMonth.get(
             viewModelScope,
             _monthListJob,
             _spendingByMonthList,
@@ -83,10 +83,10 @@ class MainFragmentViewModel @Inject constructor(
             handleFailure,
             totalYearly
         )
-        _byMonthListFetcher?.fetch()
+        _byMonth?.fetch()
 
-        _byWeekListFetcher?.clear()
-        _byWeekListFetcher = ByWeekListFetcher.get(
+        _byWeek?.clear()
+        _byWeek = ByWeek.get(
             viewModelScope,
             _weekListJob,
             _spendingByWeekList,
@@ -94,13 +94,13 @@ class MainFragmentViewModel @Inject constructor(
             handleFailure,
             totalMonthly
         )
-        _byWeekListFetcher?.fetch()
+        _byWeek?.fetch()
 
-        _byDaysListFetcher?.clear()
-        _byDaysListFetcher = ByDaysListFetcher.get(
+        _byDays?.clear()
+        _byDays = ByDays.get(
             viewModelScope, _daysListJob, _spendingByDayList, _fetchByDaysUseCase, handleFailure
         )
-        _byDaysListFetcher?.fetch()
+        _byDays?.fetch()
 
 
         _spendingListFetcher?.clear()
@@ -118,9 +118,9 @@ class MainFragmentViewModel @Inject constructor(
     }
 
     fun endFlow() {
-        _byMonthListFetcher?.clear()
-        _byWeekListFetcher?.clear()
-        _byDaysListFetcher?.clear()
+        _byMonth?.clear()
+        _byWeek?.clear()
+        _byDays?.clear()
         _spendingListFetcher?.clear()
     }
 
