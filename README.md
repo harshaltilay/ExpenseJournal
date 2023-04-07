@@ -32,7 +32,7 @@ The code is divided in to five layers of CLEAN Architecture Pattern.
 <b>3. Domain.</b><br>
 <b>4. Data.</b><br>
 <b>5. Framework.</b><br>
-Where Data flow is like this (Fragments/Activities/Presentation) -> UseCases -> Domain -> Data -> Framework
+
 
 ## Screenshot
 <a href="https://github.com/harshaltilay/ExpenseJournal">
