@@ -5,6 +5,9 @@
     <data>
 
         <variable
+            name="weekNumber"
+            type="Integer" />
+        <variable
             name="rowData"
             type="com.harshal.expensejournal.domain.room.WeeklySumEntity" />
     </data>
@@ -31,7 +34,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins"
             android:lines="1"
-            android:text="@{rowData.getFriendlyDate(context)}"
+            android:text="@{rowData.getFriendlyDate(context,weekNumber)}"
             android:textColor="@color/gray_1"
             android:textSize="10sp"
             android:textStyle="bold"

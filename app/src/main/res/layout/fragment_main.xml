@@ -270,8 +270,7 @@
                 android:background="@color/white"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/quote_tv" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/daily_limit_tv"
@@ -359,19 +358,20 @@
         app:cardCornerRadius="1dp"
         app:cardElevation="1dp"
         app:cardUseCompatPadding="true">
+
         <androidx.recyclerview.widget.RecyclerView
-            android:padding="4dp"
             android:id="@+id/spending_list_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/round_rect_border_blue_1" />
+            android:background="@drawable/round_rect_border_blue_1"
+            android:padding="4dp" />
     </androidx.cardview.widget.CardView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:orientation="horizontal"
-        android:baselineAligned="false">
+        android:baselineAligned="false"
+        android:orientation="horizontal">
 
         <FrameLayout
             android:layout_width="0dp"
@@ -397,13 +397,12 @@
                     android:id="@+id/weeks_rv"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
                     android:layout_marginTop="8dp"
+                    android:layout_weight="1"
                     android:background="@color/white"
                     android:textStyle="normal"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/quote_tv" />
+                    app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
                     android:id="@+id/weekly_limit_tv"
@@ -420,28 +419,13 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
-<!--            <TextView-->
-<!--                android:id="@+id/present_month_tv"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="center_horizontal|start"-->
-<!--                android:layout_marginStart="18dp"-->
-<!--                android:layout_marginTop="-5.5dp"-->
-<!--                android:background="@color/white"-->
-<!--                android:fontFamily="@font/poppins"-->
-<!--                android:letterSpacing="0"-->
-<!--                android:text="@string/month"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textSize="16sp"-->
-<!--                android:textStyle="bold" />-->
-
             <TextView
                 android:id="@+id/present_month_total_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|start"
-                android:layout_marginTop="-3.5dp"
                 android:layout_marginStart="18dp"
+                android:layout_marginTop="-3.5dp"
                 android:background="@color/white"
                 android:fontFamily="@font/poppins"
                 android:letterSpacing="0"
@@ -475,13 +459,12 @@
                     android:id="@+id/months_rv"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
                     android:layout_marginTop="8dp"
+                    android:layout_weight="1"
                     android:background="@color/white"
                     android:textStyle="normal"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/quote_tv" />
+                    app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
                     android:id="@+id/monthly_limit_tv"
@@ -515,59 +498,4 @@
         </FrameLayout>
 
     </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/quote_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:gravity="center_horizontal"
-        android:visibility="gone">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:layout_marginTop="6dp"
-            android:layout_marginEnd="6dp"
-            android:layout_marginBottom="6dp"
-            android:background="@drawable/round_rect_border_blue_1"
-            android:orientation="horizontal"
-            android:padding="12dp"
-            android:weightSum="1">
-
-            <TextView
-                android:id="@+id/quote_tv"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/poppins"
-                android:gravity="center"
-                android:letterSpacing="0"
-                android:lineSpacingExtra="2sp"
-                android:maxLines="3"
-                android:textColor="@color/button_bg_blue"
-                android:textSize="12sp"
-                android:textStyle="normal" />
-
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/username_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="-3.5dp"
-            android:background="@color/white"
-            android:fontFamily="@font/poppins"
-            android:letterSpacing="0"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:textColor="@color/text_dark_blue_1"
-            android:textSize="13sp"
-            android:textStyle="bold" />
-    </FrameLayout>
-
 </LinearLayout>

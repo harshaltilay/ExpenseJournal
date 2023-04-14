@@ -36,7 +36,6 @@ import com.harshal.expensejournal.databinding.FragmentMainBinding
 import com.harshal.expensejournal.domain.*
 import com.harshal.expensejournal.domain.room.DailySumEntity
 import com.harshal.expensejournal.domain.room.SpendingEntity
-import com.harshal.expensejournal.domain.user.Quotes
 import com.harshal.expensejournal.framework.android.platform.ActivityDelegate
 import com.harshal.expensejournal.framework.android.platform.BaseFragment
 import com.harshal.expensejournal.presentation.feature.main.adapters.ByDaysAdapter
@@ -117,7 +116,6 @@ class MainFragment : BaseFragment() {
         user?.let {
             _mainFragmentViewModel.beginFlow()
             it.apply {
-                binding.usernameTv.text = String.html(getString(R.string.string_welcome_user, name))
                 binding.monthlyLimitTv.text = String.html(
                     getString(R.string.string_limit_monthly, String.inCurrency(monthlyMax))
                 )
@@ -127,9 +125,6 @@ class MainFragment : BaseFragment() {
                 binding.dailyLimitTv.text = String.html(
                     getString(R.string.string_limit_daily, String.inCurrency(dailyMax))
                 )
-            }
-            Quotes.getNormalQuote().apply {
-                binding.quoteTv.text = this
             }
             setupViewAdapters()
             assignActions()
@@ -229,7 +224,6 @@ class MainFragment : BaseFragment() {
         with(_mainFragmentViewModel) {
             observe(spendingByMonthList) {
                 monthHistoryAdapter.collection = it ?: emptyList()
-
             }
 
             observe(spendingByWeekList) {
@@ -251,7 +245,7 @@ class MainFragment : BaseFragment() {
                         .toLocalDateTime()
                 val year = currentDate.year.toString().uppercase()
                 binding.presentYearTotalTv.text = String.html(
-                    getString(R.string.string_total_year, year,String.inCurrency(it ?: 0f))
+                    getString(R.string.string_total_year, year, String.inCurrency(it ?: 0f))
                 )
             }
 

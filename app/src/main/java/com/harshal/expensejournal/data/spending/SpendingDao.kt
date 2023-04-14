@@ -23,7 +23,7 @@ interface SpendingDao {
     @Query("SELECT * FROM spending WHERE strftime('%d%m%Y',date(time/1000, 'unixepoch', 'localtime')) = strftime('%d%m%Y',date(:today/1000, 'unixepoch', 'localtime')) ORDER BY time DESC")
     fun fetchSpendingOnDate(today: Long): Flow<List<SpendingEntity>>
 
-    @Query("SELECT time AS time, SUM(amount) as amount, '0' as maxlimit  FROM spending WHERE strftime('%m%Y',date(time/1000, 'unixepoch', 'localtime')) = strftime('%m%Y',date(:month/1000, 'unixepoch', 'localtime'))  GROUP BY  strftime('%W',date(time/1000, 'unixepoch', 'localtime')) ORDER BY time DESC")
+    @Query("SELECT time AS time, SUM(amount) as amount, '0' as maxlimit  FROM spending WHERE strftime('%m%Y',date(time/1000, 'unixepoch', 'localtime')) = strftime('%m%Y',date(:month/1000, 'unixepoch', 'localtime'))  GROUP BY  strftime('%W',date(time/1000, 'unixepoch', 'localtime')) ORDER BY time ASC")
     fun weeklySpending(month: Long): Flow<List<WeeklySumEntity>>
 
     @Query("SELECT time AS time, SUM(amount) as amount, '0' as maxlimit FROM spending WHERE strftime('%Y',date(time/1000, 'unixepoch', 'localtime')) = (strftime('%Y',date(:year/1000, 'unixepoch', 'localtime'))) GROUP BY  strftime('%m',date(:year/1000, 'unixepoch', 'localtime')) ORDER BY time DESC")

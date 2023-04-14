@@ -53,14 +53,15 @@ class ByWeekAdapter
     )
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) =
-        viewHolder.bind(collection[position])
+        viewHolder.bind(collection[position], position)
 
     override fun getItemCount() = collection.size
 
     inner class ViewHolder(private val binding: RowWeeklyItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(weeklySumEntity: WeeklySumEntity) {
+        fun bind(weeklySumEntity: WeeklySumEntity, position: Int) {
             binding.rowData = weeklySumEntity
+            binding.weekNumber = position + 1
         }
     }
 }

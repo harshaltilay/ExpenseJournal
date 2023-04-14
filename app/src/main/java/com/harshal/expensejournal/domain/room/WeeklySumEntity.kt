@@ -22,7 +22,7 @@ package com.harshal.expensejournal.domain.room
 import android.content.Context
 import android.text.Spanned
 import com.harshal.expensejournal.R
-import com.harshal.expensejournal.domain.getWeekOfMonth
+import com.harshal.expensejournal.domain.getPostFixedNumber
 import com.harshal.expensejournal.domain.html
 import com.harshal.expensejournal.domain.inCurrency
 import java.util.*
@@ -40,10 +40,10 @@ data class WeeklySumEntity(
         )
     }
 
-    fun getFriendlyDate(context: Context): Spanned {
+    fun getFriendlyDate(context: Context, weekNumber: Int): Spanned {
         return String.html(
             context.getString(
-                R.string.string_friendly_week, String.getWeekOfMonth(time)
+                R.string.string_friendly_week, String.getPostFixedNumber(weekNumber)
             )
         )
     }
