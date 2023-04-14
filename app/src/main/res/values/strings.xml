@@ -75,7 +75,7 @@
     <string name="amount">amount</string>
     <string name="profile">Profile</string>
     <string name="search_amp_history"><![CDATA[Search & History]]></string>
-    <string name="your_country_code">Your country code</string>
+    <string name="your_country_code">Please enter your country code (eg. US, IN, JP etc…)</string>
 
     <string name="error_invalid_username">Incorrect Username</string>
     <string name="error_invalid_amount">Invalid amount</string>
