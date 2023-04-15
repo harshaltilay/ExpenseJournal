@@ -18,7 +18,7 @@
 
 
 
-package com.harshal.expensejournal.presentation.feature.main.list
+package com.harshal.expensejournal.domain.expenses
 
 import androidx.lifecycle.MutableLiveData
 import com.harshal.expensejournal.domain.FailureException

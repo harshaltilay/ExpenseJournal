@@ -27,10 +27,10 @@ import com.harshal.expensejournal.domain.room.MonthlySumEntity
 import com.harshal.expensejournal.domain.room.SpendingEntity
 import com.harshal.expensejournal.domain.room.WeeklySumEntity
 import com.harshal.expensejournal.framework.android.platform.BaseViewModel
-import com.harshal.expensejournal.presentation.feature.main.list.ByDays
-import com.harshal.expensejournal.presentation.feature.main.list.ByMonth
-import com.harshal.expensejournal.presentation.feature.main.list.ByWeek
-import com.harshal.expensejournal.presentation.feature.main.list.SpendingListFetcher
+import com.harshal.expensejournal.domain.expenses.ByDays
+import com.harshal.expensejournal.domain.expenses.ByMonth
+import com.harshal.expensejournal.domain.expenses.ByWeek
+import com.harshal.expensejournal.domain.expenses.SpendingListFetcher
 import com.harshal.expensejournal.usecases.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job

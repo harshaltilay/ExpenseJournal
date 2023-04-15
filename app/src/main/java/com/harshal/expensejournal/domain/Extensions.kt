@@ -98,13 +98,6 @@ fun String.Companion.getMonth(
     }
 }
 
-fun String.Companion.getWeekOfMonth(date: Date): String {
-    return with(Calendar.getInstance()) {
-        time = date
-        getPostFixedNumber(this[Calendar.WEEK_OF_MONTH])
-    }
-}
-
 fun String.Companion.getPostFixedNumber(i: Int): String {
     return with(i) {
         val j = rem(10)
